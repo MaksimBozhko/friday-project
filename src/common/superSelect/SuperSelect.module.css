@@ -1,0 +1,15 @@
+.select {
+    width: 165px;
+    height: 24px;
+}
+
+.select:focus {
+
+}
+.select:active {
+color: #00cc22;
+}
+
+.option:hover {
+    color: yellow;
+}

@@ -1,0 +1,23 @@
+.radio {
+    margin-right: 13px;
+
+}
+input[type='radio'] {
+    color: black;
+}
+
+.radio::before {
+}
+
+
+.radio:checked::before {
+}
+
+.label {
+    margin-bottom: 22px;
+}
+
+.options {
+    display: flex;
+    flex-direction: column;
+}
