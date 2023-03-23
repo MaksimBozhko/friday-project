@@ -5,7 +5,7 @@ import React, {
     useState,
 } from 'react'
 import s from './SuperEditableSpan.module.css'
-import SuperInputText from '../../../hw04/common/c1-SuperInputText/SuperInputText'
+import SuperInputText from '../superInputText/SuperInputText'
 import editIcon from './editIcon.svg'
 
 // тип пропсов обычного инпута

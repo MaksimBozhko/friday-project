@@ -1,19 +1,41 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import {createRoot} from 'react-dom/client';
+import {createBrowserRouter, RouterProvider,} from 'react-router-dom';
+import {Profile} from './pages/profile/Profile';
+import {Login} from './components/common/authorization/login/Login';
+import {Registration} from './components/common/authorization/registration/Registration';
+import {NewPasswordInput} from './components/common/authorization/newPasswordInput/NewPasswordInput';
+import {PasswordRecovery} from './components/common/authorization/passwordRecovery/PasswordRecovery';
+import {NotFound} from './components/common/notFound/NotFound';
 
-const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
-);
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+const router = createBrowserRouter([
+    {
+        path: "/friday-project",
+        element: <Profile />,
+        errorElement: <h1>error</h1>
+    },
+    {
+        path: "friday-project/login",
+        element: <Login/>,
+    },
+    {
+        path: "friday-project/registration",
+        element: <Registration/>,
+    },
+    {
+        path: "friday-project/newPassword",
+        element: <NewPasswordInput/>,
+    },
+    {
+        path: "friday-project/passwordRecovery",
+        element: <PasswordRecovery/>,
+    },
+    {
+        path: "friday-project/*",
+        element: <NotFound/>,
+    },
+]);
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+createRoot(document.getElementById("root") as HTMLElement).render(
+    <RouterProvider router={router} />
+);

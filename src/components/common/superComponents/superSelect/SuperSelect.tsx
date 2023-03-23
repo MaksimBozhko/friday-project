@@ -4,7 +4,7 @@ import React, {
     ChangeEvent,
 } from 'react'
 import s from './SuperSelect.module.css'
-import { ThemeType} from "../../../hw12/HW12";
+
 
 type DefaultSelectPropsType = DetailedHTMLProps<
     SelectHTMLAttributes<HTMLSelectElement>,
@@ -12,7 +12,7 @@ type DefaultSelectPropsType = DetailedHTMLProps<
 >
 
 type SuperSelectPropsType = DefaultSelectPropsType & {
-    options?: ThemeType[]
+    options?: any
     onChangeOption?: (option: any) => void
 }
 
@@ -24,7 +24,7 @@ const SuperSelect: React.FC<SuperSelectPropsType> = ({
     ...restProps
 }) => {
     const mappedOptions: any[] = options
-        ? options.map((o) => (
+        ? options.map((o: any) => (
               <option
                   id={'hw7-option-' + o.id}
                   className={s.option}
