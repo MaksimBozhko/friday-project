@@ -15,23 +15,23 @@ const router = createBrowserRouter([
         errorElement: <h1>error</h1>
     },
     {
-        path: "friday-project/login",
+        path: "/friday-project/login",
         element: <Login/>,
     },
     {
-        path: "friday-project/registration",
+        path: "/friday-project/registration",
         element: <Registration/>,
     },
     {
-        path: "friday-project/newPassword",
+        path: "/friday-project/newPassword",
         element: <NewPasswordInput/>,
     },
     {
-        path: "friday-project/passwordRecovery",
+        path: "/friday-project/passwordRecovery",
         element: <PasswordRecovery/>,
     },
     {
-        path: "friday-project/*",
+        path: "/friday-project/*",
         element: <NotFound/>,
     },
 ]);
