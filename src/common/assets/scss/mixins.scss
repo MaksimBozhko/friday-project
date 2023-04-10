@@ -1,0 +1,25 @@
+@mixin FontStyle($fw: 500, $fs: 14px, $lh: 17px, $op: 1) {
+  font-weight: $fw;
+  font-size: $fs;
+  line-height: $lh;
+  opacity: $op;
+}
+
+@mixin FlexCenter($fd: row, $jc: space-between, $ai: center) {
+  display: flex;
+  flex-direction: $fd;
+  justify-content: $jc;
+  align-items: $ai;
+}
+
+@mixin PageContainer {
+  margin: auto;
+  max-width: 1230px;
+  padding: 0 15px;
+  width: 100%;
+}
+
+@mixin Size($width: 413px, $height: 552px) {
+  max-width: $width;
+  height: $height;
+}

@@ -1,5 +1,5 @@
 import React from "react"
-import "App.css"
+import "App.scss"
 import { createBrowserRouter, Route, Routes } from "react-router-dom"
 import { NewPasswordInput } from "common/components/authorization/newPasswordInput/NewPasswordInput"
 import { Registration } from "common/components/authorization/registration/Registration"
@@ -10,9 +10,9 @@ import { NotFound } from "common/components/notFound/NotFound"
 
 export const App = () => {
   return (
-    <div className="root">
+    <div className="main">
       <Main />
-      <div>
+      <div className="root">
         <Routes>
           <Route path="login" element={<Login />} />
           <Route path="registration" element={<Registration />} />
