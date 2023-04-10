@@ -1,7 +1,7 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import {action} from '@storybook/addon-actions';
-import SuperInputText from '../components/common/superComponents/superInputText/SuperInputText';
+import SuperInputText from '../common/components/superComponents/superInputText/SuperInputText';
 
 export default {
   title: 'Example/SuperInputText',

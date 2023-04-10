@@ -1,26 +1,57 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react"
+import "App.css"
+import { createBrowserRouter, Route, Routes } from "react-router-dom"
+import { NewPasswordInput } from "common/components/authorization/newPasswordInput/NewPasswordInput"
+import { Registration } from "common/components/authorization/registration/Registration"
+import { Login } from "common/components/authorization/login/Login"
+import { PasswordRecovery } from "common/components/authorization/passwordRecovery/PasswordRecovery"
+import { Main } from "pages/main/Main"
+import { NotFound } from "common/components/notFound/NotFound"
 
-function App() {
+export const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="root">
+      <Main />
+      <div>
+        <Routes>
+          <Route path="login" element={<Login />} />
+          <Route path="registration" element={<Registration />} />
+          <Route path="newPassword" element={<NewPasswordInput />} />
+          <Route path="passwordRecovery" element={<PasswordRecovery />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </div>
     </div>
-  );
+  )
 }
 
-export default App;
+
+// export const router = createBrowserRouter([
+//   {
+//     path: "/",
+//     element: <Profile />,
+//     errorElement: <h1>error</h1>,
+//     children: [
+//       {
+//         path: "login",
+//         element: <Login />
+//       },
+//       {
+//         path: "registration",
+//         element: <Registration />
+//       },
+//       {
+//         path: "newPassword",
+//         element: <NewPasswordInput />
+//       },
+//       {
+//         path: "passwordRecovery",
+//         element: <PasswordRecovery />
+//       },
+//     ]
+//   },
+//   {
+//     path: "/*",
+//     element: <NotFound />
+//   }
+// ])

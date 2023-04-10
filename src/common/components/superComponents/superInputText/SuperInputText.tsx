@@ -5,7 +5,7 @@ import React, {
     KeyboardEvent,
     ReactNode,
 } from 'react'
-import s from './SuperInputText.module.css'
+import s from 'common/components/superComponents/superInputText/SuperInputText.module.css'
 
 // тип пропсов обычного инпута
 type DefaultInputPropsType = DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>,

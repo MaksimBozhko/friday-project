@@ -3,7 +3,7 @@ import React, {
     DetailedHTMLProps,
     ChangeEvent,
 } from 'react'
-import s from './SuperSelect.module.css'
+import s from 'common/components/superComponents/superSelect/SuperSelect.module.css'
 
 
 type DefaultSelectPropsType = DetailedHTMLProps<

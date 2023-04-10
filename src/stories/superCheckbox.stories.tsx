@@ -1,6 +1,6 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import SuperCheckbox from '../components/common/superComponents/superCheckbox/SuperCheckbox';
+import SuperCheckbox from '../common/components/superComponents/superCheckbox/SuperCheckbox';
 import {action} from '@storybook/addon-actions';
 
 export default {

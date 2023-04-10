@@ -1,6 +1,6 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import SuperButton from '../components/common/superComponents/superButton/SuperButton';
+import SuperButton from '../common/components/superComponents/superButton/SuperButton';
 import {action} from '@storybook/addon-actions';
 
 export default {

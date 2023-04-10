@@ -1,7 +1,7 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import {action} from '@storybook/addon-actions';
-import SuperRange from '../components/common/superComponents/superRange/SuperRange';
+import SuperRange from '../common/components/superComponents/superRange/SuperRange';
 
 export default {
   title: 'Example/SuperRange',

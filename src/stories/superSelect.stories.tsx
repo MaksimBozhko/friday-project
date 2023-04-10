@@ -1,7 +1,7 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import {action} from '@storybook/addon-actions';
-import SuperSelect from '../components/common/superComponents/superSelect/SuperSelect';
+import SuperSelect from '../common/components/superComponents/superSelect/SuperSelect';
 
 export default {
   title: 'Example/SuperSelect',
