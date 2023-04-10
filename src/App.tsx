@@ -1,12 +1,12 @@
 import React from "react"
 import "App.scss"
 import { createBrowserRouter, Route, Routes } from "react-router-dom"
-import { NewPasswordInput } from "common/components/authorization/newPasswordInput/NewPasswordInput"
 import { Registration } from "common/components/authorization/registration/Registration"
 import { Login } from "common/components/authorization/login/Login"
 import { PasswordRecovery } from "common/components/authorization/passwordRecovery/PasswordRecovery"
 import { Main } from "pages/main/Main"
 import { NotFound } from "common/components/notFound/NotFound"
+import { NewPasswordInput } from "common/components/authorization/newPasswordInput/NewPasswordInput";
 
 export const App = () => {
   return (
