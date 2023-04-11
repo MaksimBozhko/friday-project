@@ -1,7 +1,7 @@
 @import "../../../assets/scss/mixins";
 
-.login {
-  @include Size;
+.CheckEmail {
+  @include Size(413px, 408px);
   @include FlexCenter(column, unset);
 
   margin: 100px auto;
@@ -12,37 +12,10 @@
     margin-bottom: 30px;
   }
 
-  .form {
-    @include FlexCenter(column, unset);
-    width: 100%;
+  .text {
+    @include FontStyle(400, 14px, 24px, 0.5);
 
-    .input {
-      width: 100%;
-      margin: 12px;
-    }
-
-    .btn {
-      width: 100%;
-      margin: 60px 0 30px;
-    }
-
-    label {
-      @include FlexCenter
-    }
+    margin: 31px 0 41px;
+    text-align: center;
   }
-
-  .signUp {
-    @include FlexCenter(column);
-    gap: 10px;
-
-    .account {
-      @include FontStyle(600, 14px, 24px, 0.5)
-    }
-
-    .signUpBtn {
-      @include FontStyle(600, 16px, 24px);
-      text-decoration-line: underline;
-      color: #366EFF;
-    }
   }
-}
