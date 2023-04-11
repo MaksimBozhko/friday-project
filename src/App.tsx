@@ -7,6 +7,7 @@ import { PasswordRecovery } from "common/components/authorization/passwordRecove
 import { Main } from "pages/main/Main"
 import { NotFound } from "common/components/notFound/NotFound"
 import { NewPasswordInput } from "common/components/authorization/newPasswordInput/NewPasswordInput";
+import { CheckEmail } from "common/components/authorization/checkEmail/CheckEmail";
 
 export const App = () => {
   return (
@@ -14,11 +15,12 @@ export const App = () => {
       <Main />
       <div className="root">
         <Routes>
-          <Route path="login" element={<Login />} />
-          <Route path="registration" element={<Registration />} />
-          <Route path="newPassword" element={<NewPasswordInput />} />
-          <Route path="passwordRecovery" element={<PasswordRecovery />} />
-          <Route path="*" element={<NotFound />} />
+          <Route path="friday-project/login" element={<Login />} />
+          <Route path="friday-project/registration" element={<Registration />} />
+          <Route path="friday-project/newPassword" element={<NewPasswordInput />} />
+          <Route path="friday-project/passwordRecovery" element={<PasswordRecovery />} />
+          <Route path="friday-project/checkEmail" element={<CheckEmail />} />
+          <Route path="friday-project/*" element={<NotFound />} />
         </Routes>
       </div>
     </div>

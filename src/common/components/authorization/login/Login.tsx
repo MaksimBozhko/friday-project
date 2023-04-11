@@ -23,7 +23,7 @@ export const Login = () => {
       </div>
       <div className={s.signUp}>
         <p className={s.account}>Already have an account?</p>
-        <NavLink className={s.signUpBtn} to="/registration">Sign Up</NavLink>
+        <NavLink className={s.signUpBtn} to="/friday-project/registration">Sign Up</NavLink>
       </div>
     </Paper>
   );

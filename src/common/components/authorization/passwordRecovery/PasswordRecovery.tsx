@@ -17,7 +17,7 @@ export const PasswordRecovery = () => {
       </div>
       <div className={s.signIn}>
         <p className={s.remember}>Did you remember your password?</p>
-        <NavLink className={s.signInBtn} to="/login">Try logging in</NavLink>
+        <NavLink className={s.signInBtn} to="/friday-project/login">Try logging in</NavLink>
       </div>
     </Paper>
   );
