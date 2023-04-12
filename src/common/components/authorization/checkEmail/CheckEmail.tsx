@@ -3,7 +3,7 @@ import s from "./checkEmail.module.scss";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
 import { NavLink } from "react-router-dom";
-import {ReactComponent as Email} from "common/assets/img/email.svg";
+import { ReactComponent as Email } from "common/assets/img/email.svg";
 
 export const CheckEmail = () => {
   return (
@@ -15,7 +15,6 @@ export const CheckEmail = () => {
         <NavLink className={s.signInBtn} to="/friday-project/login">
           <Button className={s.btn} variant="contained">Back to login</Button>
         </NavLink>
-
     </Paper>
   );
 };
