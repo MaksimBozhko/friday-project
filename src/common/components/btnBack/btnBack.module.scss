@@ -1,0 +1,7 @@
+@import "../../assets/scss/mixins";
+
+.block {
+  width: 155px;
+  @include FlexCenter;
+  @include FontStyle(400, 14px, 24px)
+}
