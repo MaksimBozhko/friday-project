@@ -7,6 +7,10 @@
 
     .container {
         @include PageContainer;
-        @include FlexCenter
+        @include FlexCenter;
+
+        .btn {
+            width: 113px;
+        }
     }
 }

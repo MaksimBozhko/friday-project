@@ -1,0 +1,10 @@
+@import "../../../../common/assets/scss/mixins";
+
+.user {
+  @include FlexCenter;
+  gap: 10px;
+
+  .name {
+    @include FontStyle(500, 16px, 24px)
+  }
+}
