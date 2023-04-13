@@ -5,9 +5,11 @@ import SuperEditableSpan from "common/components/superComponents/superEditableSp
 import SuperButton from "common/components/superComponents/superButton/SuperButton";
 import { ReactComponent as Logout } from "common/assets/img/logout.svg";
 import { AuthWrapper } from "common/components/authorization/authWrapper/AuthWrapper";
+import { BtnBack } from "common/components/btnBack/BtnBack";
 
 export const EditProfile = () => {
-  return (
+  return <>
+    <BtnBack/>
     <AuthWrapper>
       <h1 className={s.title}>Personal Information</h1>
       <div className={s.form}>
@@ -23,5 +25,5 @@ export const EditProfile = () => {
         </SuperButton>
       </div>
     </AuthWrapper>
-  );
+  </>
 };
