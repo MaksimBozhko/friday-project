@@ -1,11 +1,5 @@
 @import "../../../assets/scss/mixins";
 
-.CheckEmail {
-  @include Size(413px, 408px);
-  @include FlexCenter(column, unset);
-
-  margin: 100px auto;
-  padding: 35px 30px;
 
   .title {
     @include FontStyle(600, 26px, 32px);
@@ -18,4 +12,7 @@
     margin: 31px 0 41px;
     text-align: center;
   }
+
+  .loginBtn {
+    width: 100%;
   }
