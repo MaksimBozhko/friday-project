@@ -1,0 +1,17 @@
+@import "../../../../common/assets/scss/mixins";
+
+.spanBlock {
+  @include FlexCenter;
+  gap: 10px;
+}
+
+.span {
+  @include FontStyle(500, 20px, 24px);
+}
+
+.input {
+  @include FontStyle(500, 20px, 24px);
+}
+
+.pen {
+}

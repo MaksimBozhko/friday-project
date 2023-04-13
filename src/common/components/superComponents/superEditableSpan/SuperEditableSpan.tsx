@@ -1,12 +1,7 @@
-import React, {
-    DetailedHTMLProps,
-    InputHTMLAttributes,
-    HTMLAttributes,
-    useState,
-} from 'react'
-import s from 'common/components/superComponents/superEditableSpan/SuperEditableSpan.module.css'
-import SuperInputText from 'common/components/superComponents/superInputText/SuperInputText'
-import editIcon from 'common/components/superComponents/superEditableSpan/editIcon.svg'
+import React, { DetailedHTMLProps, HTMLAttributes, InputHTMLAttributes, useState } from "react";
+import s from "common/components/superComponents/superEditableSpan/SuperEditableSpan.module.scss";
+import SuperInputText from "common/components/superComponents/superInputText/SuperInputText";
+import editIcon from "common/assets/img/edit.svg";
 
 // тип пропсов обычного инпута
 type DefaultInputPropsType = DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>,
@@ -50,20 +45,27 @@ const SuperEditableSpan: React.FC<SuperEditableSpanType> = (
         setEditMode(false)
         onBlur?.(e)
     }
-    const onDoubleClickCallBack = (
-        e: React.MouseEvent<HTMLSpanElement, MouseEvent>
-    ) => {
+    const onDoubleClickCallBack = (e: React.MouseEvent<HTMLSpanElement, MouseEvent>) => {
         // включить editMode при двойном клике // делают студенты
         setEditMode(true)
         onDoubleClick?.(e)
     }
 
-    const spanClassName = s.span
-        + (className ? ' ' + className : '')
+    const spanClassName = s.span + (className ? ' ' + className : '')
 
     return (
         <>
             {editMode ? (
+                // <TextField
+                //   id="standard-basic"
+                //   label="Nickname"
+                //   variant="standard"
+                //   autoFocus={autoFocus || true}
+                //   onBlur={onBlurCallback}
+                //   // onEnter={onEnterCallback}
+                //   className={s.input}
+                //   value={'sdfgsdfgsdfg'}
+                // />
                 <SuperInputText
                     autoFocus={autoFocus || true}
                     onBlur={onBlurCallback}
@@ -73,20 +75,18 @@ const SuperEditableSpan: React.FC<SuperEditableSpanType> = (
                 />
             ) : (
                 <div className={s.spanBlock}>
-                    <img
-                        src={editIcon}
-                        className={s.pen}
-                        alt={'edit'}
-                    />
                     <span
                         onDoubleClick={onDoubleClickCallBack}
                         className={spanClassName}
                         {...restSpanProps}
                     >
-                        {/*если нет захардкодженного текста для спана, то значение инпута*/}
-
                         {children || restProps.value || defaultText}
                     </span>
+                    <img
+                      src={editIcon}
+                      className={s.pen}
+                      alt={'edit'}
+                    />
                 </div>
             )}
         </>

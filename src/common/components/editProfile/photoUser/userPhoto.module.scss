@@ -1,0 +1,13 @@
+.userPhoto {
+  position: relative;
+
+  .img {
+    border-radius: 50%;
+  }
+
+  .uploadBtn {
+    position: absolute;
+    bottom: -10px;
+    right: -10px;
+  }
+}

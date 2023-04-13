@@ -1,8 +1,10 @@
+@import "../../../../common/assets/scss/mixins";
+
 .input:focus {
 }
 
 .input {
-
+    @include FontStyle(500, 16px, 24px)
 }
 
 .inputWrapper {
