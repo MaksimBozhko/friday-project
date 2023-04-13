@@ -1,6 +1,6 @@
 import React from "react";
 import s from "./login.module.scss";
-
+import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { NavLink } from "react-router-dom";
 import TextField from "@mui/material/TextField";
 import Checkbox from "@mui/material/Checkbox";
@@ -8,24 +8,29 @@ import { AuthWrapper } from "common/components/authorization/authWrapper/AuthWra
 import SuperButton from "common/components/superComponents/superButton/SuperButton";
 
 export const Login = () => {
+  const {register, handleSubmit} = useForm()
+  const onSubmit: SubmitHandler<FieldValues> = (data) => {
+    console.log(data);
+  }
   return (
     <AuthWrapper>
       <h1 className={s.title}>Sign in</h1>
-      <div className={s.form}>
-        <TextField className={s.input} label="Email" variant="standard" />
-        <TextField className={s.input} label="Password" type="password" autoComplete="current-password"
+      <form onSubmit={handleSubmit(onSubmit)} className={s.form}>
+        <TextField {...register('email')} className={s.input} label="Email" variant="standard" />
+        <TextField {...register('password')} className={s.input} label="Password" type="password" autoComplete="current-password"
                    variant="standard" />
         <label className={s.checkBox}>
-          <Checkbox defaultChecked />
+          <Checkbox {...register('rememberMe')} defaultChecked />
           <p>Remember me</p>
         </label>
         <NavLink className={s.forgotPas} to="/passwordRecovery">Forgot Password?</NavLink>
-        <SuperButton className={s.btn}>Sign In</SuperButton>
-      </div>
+        <SuperButton type="submit" className={s.btn}>Sign In</SuperButton>
+      </form>
       <div className={s.signUp}>
         <p className={s.account}>Already have an account?</p>
         <NavLink className={s.signUpBtn} to="/friday-project/registration">Sign Up</NavLink>
       </div>
+
     </AuthWrapper>
   );
 };
