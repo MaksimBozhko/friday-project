@@ -1,11 +1,9 @@
-import React from 'react';
-import { EditProfile } from "common/components/editProfile/EditProfile";
+import React from "react";
 
 export const NotFound = () => {
     return (
         <div>
             NotFound
-          <EditProfile/>
         </div>
     )
 }
