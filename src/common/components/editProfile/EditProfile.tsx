@@ -1,6 +1,5 @@
 import React from "react";
 import s from "./editProfile.module.scss";
-import Paper from "@mui/material/Paper";
 import UserPhoto from "common/components/editProfile/photoUser/photoUser";
 import SuperEditableSpan from "common/components/superComponents/superEditableSpan/SuperEditableSpan";
 import SuperButton from "common/components/superComponents/superButton/SuperButton";
