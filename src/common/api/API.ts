@@ -1,4 +1,5 @@
 import axios from "axios";
+import { FieldValues } from "react-hook-form";
 
 export const instance = axios.create({
   // baseURL: process.env.REACT_APP_BACK_URL || 'http://localhost:7542/2.0/' ,
@@ -7,13 +8,13 @@ export const instance = axios.create({
 });
 
 export const authAPI = {
-  login(data: LoginParamsType) {
+  login(data: FieldValues) {
     return instance.post("auth/login", data);
   },
   logout() {
     return instance.delete("auth/me");
   },
-  regiter(data: RegisterParamsType) {
+  register(data: FieldValues) {
     return instance.post("auth/register", data);
   },
   auth() {
@@ -22,7 +23,7 @@ export const authAPI = {
   updateProfile(data: UpdateProfileParamsType) {
     return instance.put("auth/me", data);
   },
-  forgotPassword(email: string) {
+  forgotPassword({email}: FieldValues) {
     const data = {
       email,
       from: "test-front-admin <ai73a@yandex.by>", // можно указать разработчика фронта)
@@ -37,11 +38,6 @@ export const authAPI = {
   }
 };
 
-export type LoginParamsType = {
-  email: string
-  password: string
-  rememberMe: boolean
-}
 export type RegisterParamsType = {
   email: string
   password: string

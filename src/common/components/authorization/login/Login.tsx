@@ -6,11 +6,14 @@ import TextField from "@mui/material/TextField";
 import Checkbox from "@mui/material/Checkbox";
 import { AuthWrapper } from "common/components/authorization/authWrapper/AuthWrapper";
 import SuperButton from "common/components/superComponents/superButton/SuperButton";
+import { authAPI } from "common/api/API";
 
 export const Login = () => {
   const {register, handleSubmit} = useForm()
-  const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    console.log(data);
+  const onSubmit: SubmitHandler<FieldValues> = (FieldValues) => {
+    console.log(FieldValues);
+    authAPI.login(FieldValues)
+      .then((data) => console.log(data))
   }
   return (
     <AuthWrapper>
