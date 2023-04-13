@@ -15,7 +15,7 @@ export const PasswordRecovery = () => {
         <label>Enter your email address and we will send you further instructions </label>
         <SuperButton className={s.btn}>Send Instructions</SuperButton>
       </div>
-      <div className={s.signIn}>
+      <div className={s.toLogin}>
         <p className={s.remember}>Did you remember your password?</p>
         <NavLink className={s.signInBtn} to="/friday-project/login">Try logging in</NavLink>
       </div>

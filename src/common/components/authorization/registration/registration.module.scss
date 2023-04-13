@@ -19,7 +19,7 @@
   }
 }
 
-.signUp {
+.signIn {
   @include FlexCenter(column);
   gap: 10px;
   margin-top: 30px;
@@ -28,7 +28,7 @@
     @include FontStyle(600, 14px, 24px, 0.5)
   }
 
-  .signUpBtn {
+  .signInBtn {
     @include FontStyle(600, 16px, 24px);
     text-decoration-line: underline;
     color: #366EFF;

@@ -18,9 +18,9 @@ export const Registration = () => {
                    variant="standard" />
         <SuperButton className={s.btn}>Sign Up</SuperButton>
       </div>
-      <div className={s.signUp}>
+      <div className={s.signIn}>
         <p className={s.account}>Already have an account?</p>
-        <NavLink className={s.signUpBtn} to="/friday-project/login">Sign In</NavLink>
+        <NavLink className={s.signInBtn} to="/friday-project/login">Sign In</NavLink>
       </div>
     </AuthWrapper>
   );
