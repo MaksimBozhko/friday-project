@@ -1,18 +1,18 @@
 import React from "react";
 import s from "./newPassword.module.scss";
 import TextField from "@mui/material/TextField";
-import Paper from "@mui/material/Paper";
-import Button from "@mui/material/Button";
+import { AuthWrapper } from "common/components/authorization/authWrapper/AuthWrapper";
+import SuperButton from "common/components/superComponents/superButton/SuperButton";
 
 export const NewPasswordInput = () => {
   return (
-    <Paper elevation={2} className={s.newPassword} >
+    <AuthWrapper>
       <h1 className={s.title}>Create new password</h1>
       <div className={s.form}>
         <TextField className={s.input} label="Password" type="password" autoComplete="current-password" variant="standard" />
-        <label>Create new password and we will send you further instructions to email</label>
-        <Button className={s.btn} variant="contained">Contained</Button>
+        <label className={s.text}>Create new password and we will send you further instructions to email</label>
+        <SuperButton className={s.btn}>Create new password</SuperButton>
       </div>
-    </Paper>
+    </AuthWrapper>
   );
 };

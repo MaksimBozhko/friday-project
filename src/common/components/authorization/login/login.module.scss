@@ -1,28 +1,43 @@
 @import "../../../assets/scss/mixins";
 
-.editProfile {
-  @include Size(413px, 360px);
+
+.title {
+  @include FontStyle(600, 26px, 32px);
+  margin-bottom: 30px;
+}
+
+.form {
   @include FlexCenter(column, unset);
+  width: 100%;
 
-  margin: 100px auto;
-  padding: 35px 30px;
-
-  .title {
-    @include FontStyle(600, 26px, 32px);
-    margin-bottom: 30px;
+  .input {
+    width: 100%;
+    margin-bottom: 20px;
   }
 
-  .form {
-    @include FlexCenter(column, unset);
+  .checkBox {
+    @include FlexCenter(row, flex-start);
     width: 100%;
+  }
 
-    .editableSpan {
-      margin-top: 20px;
-    }
+  .forgotPas {
+    align-self: flex-end;
+    margin: 20px 0 60px;
+  }
+}
 
-    .email {
-      @include FontStyle(400, 14px, 24px, 0.5);
-      margin: 20px 0 15px;
-    }
+.signUp {
+  @include FlexCenter(column);
+  gap: 10px;
+  margin-top: 30px;
+
+  .account {
+    @include FontStyle(600, 14px, 24px, 0.5)
+  }
+
+  .signUpBtn {
+    @include FontStyle(600, 16px, 24px);
+    text-decoration-line: underline;
+    color: #366EFF;
   }
 }

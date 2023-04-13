@@ -1,0 +1,9 @@
+@import "../../../assets/scss/mixins";
+
+.wrapper {
+  @include Size(413px, 360px);
+  @include FlexCenter(column, unset);
+
+  margin: 100px auto;
+  padding: 35px 30px;
+}
