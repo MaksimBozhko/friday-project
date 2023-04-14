@@ -1,6 +1,6 @@
-import * as React from 'react';
-import IconButton from '@mui/material/IconButton';
-import {ChangeEventHandler, ReactNode} from "react";
+import * as React from "react";
+import { ChangeEventHandler, ReactNode } from "react";
+import IconButton from "@mui/material/IconButton";
 
 type Color = "inherit" | "default" | "primary" | "secondary" | "error" | "info" | "success" | "warning"
 

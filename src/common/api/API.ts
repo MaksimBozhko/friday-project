@@ -20,7 +20,7 @@ export const authAPI = {
   auth() {
     return instance.post("auth/me");
   },
-  updateProfile(data: UpdateProfileParamsType) {
+  updateProfile(data: FieldValues) {
     return instance.put("auth/me", data);
   },
   forgotPassword({email}: FieldValues) {
@@ -33,7 +33,7 @@ export const authAPI = {
     };
     return instance.post("https://neko-back.herokuapp.com/2.0/auth/forgot", data);
   },
-  NewPassword(data: NewPasswordParamsType) {
+  newPassword(data: FieldValues) {
     return instance.post("auth/set-new-password", data);
   }
 };
