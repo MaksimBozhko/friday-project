@@ -1,0 +1,23 @@
+@import "../../assets/scss/mixins";
+
+.title {
+  @include FontStyle(600, 22px, 27px);
+  margin: 27px auto auto;
+}
+
+.content {
+  @include FlexCenter(column);
+  margin: 90px auto auto;
+  max-width: 430px;
+  width: 100%;
+
+  .text {
+    @include FontStyle(400, 16px, 20px, 0.5);
+    margin-bottom: 35px;
+  }
+
+  .btnBlock {
+    width: 170px;
+
+  }
+}

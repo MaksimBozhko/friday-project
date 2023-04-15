@@ -1,5 +1,4 @@
-@mixin FontStyle($fw: 500, $fs: 14px, $lh: 17px, $op: 1) {
-  font-weight: $fw;
+@mixin FontStyle($fw: 500, $fs: 14px, $lh: 17px, $op: 1) {font-weight: $fw;
   font-size: $fs;
   line-height: $lh;
   opacity: $op;
