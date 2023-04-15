@@ -1,7 +1,7 @@
 import React from 'react';
-import s from "common/components/table/table.module.scss"
+import s from "common/components/tablePacksList/table.module.scss"
 
-export const Table = () => {
+export const TablePacksList = () => {
   const data = [
     {
       name: 'name',

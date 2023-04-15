@@ -2,7 +2,7 @@ import React from "react";
 import s from "./packsList.module.scss";
 import SuperButton from "common/components/superComponents/superButton/SuperButton";
 import { FilterBlock } from "common/components/filterBlock/FilterBlock";
-import { Table } from "common/components/table/Table";
+import { TablePacksList } from "common/components/tablePacksList/TablePacksList";
 import Pagination from '@mui/material/Pagination';
 
 export const PacksList = () => {
@@ -12,7 +12,7 @@ export const PacksList = () => {
         <SuperButton className={s.btn}>Add new pack</SuperButton>
       </div>
     <FilterBlock/>
-    <Table />
+    <TablePacksList />
     <footer>
       <Pagination count={10} color="primary" />
     </footer>
