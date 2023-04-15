@@ -1,0 +1,26 @@
+@import "../../assets/scss/mixins";
+
+.filterBlock {
+ @include FlexCenter;
+
+  h3 {
+    @include FontStyle(600,14px, 17px);
+    margin-bottom: 10px;
+  }
+
+  .searchBlock {
+    max-width: 413px;
+    width: 100%;
+  }
+
+  .showPacks {
+    max-width: 250px;
+    width: 100%;
+  }
+
+  .numberCards {
+    max-width: 250px;
+    width: 100%;
+  }
+
+}

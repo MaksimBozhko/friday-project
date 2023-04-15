@@ -9,6 +9,7 @@ import { NotFound } from "common/components/notFound/NotFound"
 import { NewPasswordInput } from "common/components/authorization/newPasswordInput/NewPasswordInput";
 import { CheckEmail } from "common/components/authorization/checkEmail/CheckEmail";
 import { EditProfile } from "common/components/editProfile/EditProfile";
+import  { PacksList } from "pages/packsList/PacksList";
 
 export const App = () => {
   return (
@@ -16,6 +17,7 @@ export const App = () => {
       <Main />
       <div className="root">
         <Routes>
+          <Route path="friday-project" element={<PacksList />} />
           <Route path="friday-project/login" element={<Login />} />
           <Route path="friday-project/registration" element={<Registration />} />
           <Route path="friday-project/newPassword" element={<NewPasswordInput />} />
@@ -59,3 +61,6 @@ export const App = () => {
 //     element: <NotFound />
 //   }
 // ])
+
+
+
