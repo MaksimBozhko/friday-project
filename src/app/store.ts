@@ -1,10 +1,13 @@
 import { AnyAction, combineReducers } from "redux";
 import { ThunkDispatch } from "redux-thunk";
 import { configureStore } from "@reduxjs/toolkit";
+import { authReducer } from "common/components/authorization/login/authSlice";
+import { appReducer } from "app/appSlice";
 
 
 const rootReducer = combineReducers({
-
+	auth: authReducer,
+	app: appReducer
 })
 
 export const store = configureStore({

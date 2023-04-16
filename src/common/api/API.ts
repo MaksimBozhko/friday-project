@@ -17,8 +17,8 @@ export const authAPI = {
   register(data: FieldValues) {
     return instance.post("auth/register", data);
   },
-  auth() {
-    return instance.post("auth/me");
+  me() {
+    return instance.post<{email: string, name: string, _id:string}>("auth/me");
   },
   updateProfile(data: FieldValues) {
     return instance.put("auth/me", data);
