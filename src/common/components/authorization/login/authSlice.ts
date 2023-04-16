@@ -61,6 +61,26 @@ const register = createAppAsyncThunk<{ isRegister: boolean }, FieldValues>
   }
 });
 
+const forgotPassword = createAppAsyncThunk<void, FieldValues>
+("auth/forgotPassword", async (arg, thunkAPI) => {
+  const { dispatch, rejectWithValue } = thunkAPI;
+  try {
+    const res = await authAPI.forgotPassword(arg);
+  } catch (e) {
+    handleServerNetworkError(e, dispatch);
+  }
+});
+
+const setNewPassword = createAppAsyncThunk<void, FieldValues>
+("auth/setNewPassword", async (arg, thunkAPI) => {
+  const { dispatch, rejectWithValue } = thunkAPI;
+  try {
+    const res = await authAPI.setNewPassword(arg);
+  } catch (e) {
+    handleServerNetworkError(e, dispatch);
+  }
+});
+
 
 const slice = createSlice({
   name: "auth",
@@ -92,7 +112,7 @@ const slice = createSlice({
 
 export const authReducer = slice.reducer;
 export const authActions = slice.actions;
-export const authThunks = { login, logout, initializeApp, register };
+export const authThunks = { login, logout, initializeApp, register, forgotPassword, setNewPassword };
 
 
 

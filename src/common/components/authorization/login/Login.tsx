@@ -30,7 +30,7 @@ export const Login = () => {
           <Checkbox {...register('rememberMe')} defaultChecked />
           <p>Remember me</p>
         </label>
-        <NavLink className={s.forgotPas} to="/passwordRecovery">Forgot Password?</NavLink>
+        <NavLink className={s.forgotPas} to="/friday-project/passwordRecovery">Forgot Password?</NavLink>
         <SuperButton type="submit" className={s.btn}>Sign In</SuperButton>
       </form>
       <div className={s.signUp}>

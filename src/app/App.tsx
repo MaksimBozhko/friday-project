@@ -33,7 +33,7 @@ export const App = () => {
           <Route path="friday-project/" element={<PacksList />} />
           <Route path="friday-project/login" element={<Login />} />
           <Route path="friday-project/registration" element={<Registration />} />
-          <Route path="friday-project/newPassword" element={<NewPasswordInput />} />
+          <Route path="friday-project/set-new-password/:token" element={<NewPasswordInput />} />
           <Route path="friday-project/passwordRecovery" element={<PasswordRecovery />} />
           <Route path="friday-project/checkEmail" element={<CheckEmail />} />
           <Route path="friday-project/editProfile" element={<EditProfile />} />

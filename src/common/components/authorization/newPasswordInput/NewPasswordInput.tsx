@@ -4,20 +4,26 @@ import TextField from "@mui/material/TextField";
 import { AuthWrapper } from "common/components/authorization/authWrapper/AuthWrapper";
 import SuperButton from "common/components/superComponents/superButton/SuperButton";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
-import { authAPI } from "common/api/API";
+import { useNavigate, useParams } from "react-router-dom";
+import { useActions } from "common/hooks";
+import { authThunks } from "common/components/authorization/login/authSlice";
 
 export const NewPasswordInput = () => {
-  const {register, handleSubmit} = useForm()
+  const navigate = useNavigate()
+  const { setNewPassword } = useActions(authThunks);
+  const { register, handleSubmit } = useForm();
+  const { token } = useParams();
+  console.log(token);
   const onSubmit: SubmitHandler<FieldValues> = (FieldValues) => {
-    console.log(FieldValues);
-    authAPI.newPassword(FieldValues)
-      .then((data) => console.log(data))
-  }
+    setNewPassword({ ...FieldValues, resetPasswordToken: token });
+    navigate('/friday-project/login')
+  };
   return (
     <AuthWrapper>
       <h1 className={s.title}>Create new password</h1>
       <form onSubmit={handleSubmit(onSubmit)} className={s.form}>
-        <TextField {...register('password')} className={s.input} label="Password" type="password" autoComplete="current-password" variant="standard" />
+        <TextField {...register("password")} className={s.input} label="Password" type="password"
+                   autoComplete="current-password" variant="standard" />
         <label className={s.text}>Create new password and we will send you further instructions to email</label>
         <SuperButton className={s.btn}>Create new password</SuperButton>
       </form>
