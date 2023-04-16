@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react";
 import "app/App.scss"
 import { createBrowserRouter, Route, Routes } from "react-router-dom"
 import { Registration } from "common/components/authorization/registration/Registration"
@@ -10,14 +10,27 @@ import { CheckEmail } from "common/components/authorization/checkEmail/CheckEmai
 import { EditProfile } from "common/components/editProfile/EditProfile";
 import  { PacksList } from "features/packsList/PacksList";
 import { Main } from "common/components/main/Main"
+import { useActions } from "common/hooks";
+import { authThunks } from "common/components/authorization/login/authSlice";
+import { useSelector } from "react-redux";
+import { AppRootStateType } from "app/store";
+import Circular from "common/components/Circular";
 
 export const App = () => {
+  const {initializeApp} = useActions(authThunks)
+  const isInitialized = useSelector((state: AppRootStateType) => state.app.isInitialized)
+
+  useEffect(() => {
+    initializeApp()
+  }, [])
+
+  if (!isInitialized) {return <Circular/>}
   return (
     <div className="main">
       <Main />
       <div className="root">
         <Routes>
-          <Route path="friday-project/packs" element={<PacksList />} />
+          <Route path="friday-project/" element={<PacksList />} />
           <Route path="friday-project/login" element={<Login />} />
           <Route path="friday-project/registration" element={<Registration />} />
           <Route path="friday-project/newPassword" element={<NewPasswordInput />} />
