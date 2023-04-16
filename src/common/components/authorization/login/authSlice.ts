@@ -49,11 +49,24 @@ const initializeApp = createAppAsyncThunk<{ isLoggedIn: boolean }, void>
   }
 });
 
+const register = createAppAsyncThunk<{ isRegister: boolean }, FieldValues>
+("auth/register", async (arg, thunkAPI) => {
+  const { dispatch, rejectWithValue } = thunkAPI;
+  try {
+    const res = await authAPI.register(arg);
+    return { isRegister: true };
+  } catch (e) {
+    handleServerNetworkError(e, dispatch);
+    return rejectWithValue(null);
+  }
+});
+
 
 const slice = createSlice({
   name: "auth",
   initialState: {
-    isLoggedIn: false
+    isLoggedIn: false,
+    isRegister: false
   },
   reducers: {
     isLoggedIn: (state, action: PayloadAction<boolean>) => {
@@ -67,7 +80,10 @@ const slice = createSlice({
       })
       .addCase(logout.fulfilled, (state, action) => {
         state.isLoggedIn = action.payload.isLoggedIn;
-      });
+      })
+      .addCase(register.fulfilled, (state, action) => {
+        state.isRegister = action.payload.isRegister;
+      })
     // .addCase(initializeApp.fulfilled, (state, action) => {
     //   state.isLoggedIn = action.payload.isLoggedIn;
     // });
@@ -76,7 +92,7 @@ const slice = createSlice({
 
 export const authReducer = slice.reducer;
 export const authActions = slice.actions;
-export const authThunks = { login, logout, initializeApp };
+export const authThunks = { login, logout, initializeApp, register };
 
 
 
