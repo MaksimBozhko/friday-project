@@ -10,7 +10,7 @@ export const instance = axios.create({
 
 export const authAPI = {
   login(data: FieldValues) {
-    return instance.post("auth/login", data);
+    return instance.post<ResponseUserType>("auth/login", data);
   },
   logout() {
     return instance.delete("auth/me");
@@ -19,10 +19,10 @@ export const authAPI = {
     return instance.post("auth/register", data);
   },
   me() {
-    return instance.post<{email: string, name: string, _id:string}>("auth/me");
+    return instance.post<ResponseUserType>("auth/me");
   },
   updateProfile(data: FieldValues) {
-    return instance.put("auth/me", data);
+    return instance.put<ResponseUserType>("auth/me", data);
   },
   forgotPassword({email}: FieldValues) {
     const data = {
@@ -38,3 +38,11 @@ export const authAPI = {
     return instance.post("auth/set-new-password", data);
   }
 };
+
+export type ResponseUserType = {
+  _id: string
+  name: string
+  email: string
+  publicCardPacksCount: number
+  avatar: string
+}

@@ -7,10 +7,13 @@ import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 import { useActions } from "common/hooks";
 import { authThunks } from "common/components/authorization/login/authSlice";
+import { useSelector } from "react-redux";
+import { AppRootStateType } from "app/store";
 
 export const NewPasswordInput = () => {
   const navigate = useNavigate()
   const { setNewPassword } = useActions(authThunks);
+  const error = useSelector((state: AppRootStateType) => state.app.error)
   const { register, handleSubmit } = useForm();
   const { token } = useParams();
   console.log(token);
@@ -24,6 +27,7 @@ export const NewPasswordInput = () => {
       <form onSubmit={handleSubmit(onSubmit)} className={s.form}>
         <TextField {...register("password")} className={s.input} label="Password" type="password"
                    autoComplete="current-password" variant="standard" />
+        {error}
         <label className={s.text}>Create new password and we will send you further instructions to email</label>
         <SuperButton className={s.btn}>Create new password</SuperButton>
       </form>

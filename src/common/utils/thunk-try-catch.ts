@@ -1,5 +1,5 @@
 import { AppDispatch, AppRootStateType } from 'app/store';
-import { handleServerNetworkError } from 'common/utils/handle-server-network-error';
+import { handleServerError } from 'common/utils/handle-server-error';
 import { BaseThunkAPI } from '@reduxjs/toolkit/dist/createAsyncThunk';
 // import { appActions } from 'app/app.reducer';
 import { ResponseServerType } from 'common/types';
@@ -10,7 +10,7 @@ export const thunkTryCatch = async (thunkAPI: BaseThunkAPI<AppRootStateType, any
 	try {
 		return await logic()
 	} catch (e) {
-		handleServerNetworkError(e, dispatch)
+		handleServerError(e, dispatch)
 		return rejectWithValue(null)
 	} finally {
 		// dispatch(appActions.setAppStatus({status: 'idle'}))

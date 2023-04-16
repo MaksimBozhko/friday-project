@@ -1,6 +1,6 @@
 import { Dispatch } from 'redux';
 import axios, { AxiosError } from 'axios';
-// import { appActions } from 'app/app.reducer';
+import { appActions } from "app/appSlice";
 
 /**
  * Обрабатывает ошибки сети, возникающие при отправке запросов на сервер
@@ -8,12 +8,13 @@ import axios, { AxiosError } from 'axios';
  * @param {Dispatch} dispatch - Функция dispatch из библиотеки Redux для отправки actions
  * @returns {void}
  */
-export const handleServerNetworkError = (e: unknown, dispatch: Dispatch) => {
+export const handleServerError = (e: unknown, dispatch: Dispatch) => {
 	const err = e as Error | AxiosError<{ error: string }>
+	debugger
 	if (axios.isAxiosError(err)) {
-		const error = err.message ? err.message : 'Some error occurred'
-		// dispatch(appActions.setAppError({error}))
+		const error = err.response?.data.error ? err.response?.data.error : err.message
+		dispatch(appActions.setAppError({error}))
 	} else {
-		// dispatch(appActions.setAppError({error: `Native error ${err.message}`}))
+		dispatch(appActions.setAppError({error: `Native error ${err.message}`}))
 	}
 }

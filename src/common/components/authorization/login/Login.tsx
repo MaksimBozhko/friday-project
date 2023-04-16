@@ -14,6 +14,7 @@ import { AppRootStateType } from "app/store";
 export const Login = () => {
   const {login} = useActions(authThunks)
   const isLoggedIn = useSelector((state: AppRootStateType) => state.auth.isLoggedIn)
+  const error = useSelector((state: AppRootStateType) => state.app.error)
   const {register, handleSubmit} = useForm()
 
   const onSubmit: SubmitHandler<FieldValues> = (FieldValues) => login(FieldValues)
@@ -26,6 +27,7 @@ export const Login = () => {
         <TextField {...register('email')} className={s.input} label="Email" variant="standard" />
         <TextField {...register('password')} className={s.input} label="Password" type="password" autoComplete="current-password"
                    variant="standard" />
+        {error}
         <label className={s.checkBox}>
           <Checkbox {...register('rememberMe')} defaultChecked />
           <p>Remember me</p>

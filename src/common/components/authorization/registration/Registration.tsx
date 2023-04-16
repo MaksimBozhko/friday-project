@@ -1,12 +1,10 @@
 import React, { ChangeEvent, useState } from "react";
 import s from "./registration.module.scss";
-
 import { Navigate, NavLink } from "react-router-dom";
 import TextField from "@mui/material/TextField";
 import { AuthWrapper } from "common/components/authorization/authWrapper/AuthWrapper";
 import SuperButton from "common/components/superComponents/superButton/SuperButton";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
-import { authAPI } from "common/api/API";
 import { useActions } from "common/hooks";
 import { authThunks } from "common/components/authorization/login/authSlice";
 import { useSelector } from "react-redux";
@@ -17,8 +15,9 @@ export const Registration = () => {
   const isRegister = useSelector((state: AppRootStateType) => state.auth.isRegister)
   const {register, handleSubmit} = useForm()
   const [password, setPassword] = useState('')
-  const [error, setError] = useState('')
-
+  const appError = useSelector((state: AppRootStateType) => state.app.error)
+  const [error, setError] = useState("")
+debugger
   const onChangeHandler = (e: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
     setPassword(e.currentTarget.value);
   }
@@ -28,6 +27,7 @@ export const Registration = () => {
       setError('different password')
     } else {
       registration(FieldValues)
+      setError('')
     }
   }
 
@@ -41,7 +41,7 @@ export const Registration = () => {
                    variant="standard" />
         <TextField className={s.input} label="Confirm password" type="password" autoComplete="current-password"
                    variant="standard" onChange={onChangeHandler} />
-        {error}
+        {error || appError}
         <SuperButton className={s.btn}>Sign Up</SuperButton>
       </form>
       <div className={s.signIn}>

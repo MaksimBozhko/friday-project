@@ -1,48 +1,45 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { appActions } from "app/appSlice";
-import { createAppAsyncThunk, handleServerAppError, handleServerNetworkError } from "common/utils";
-import { authAPI } from "common/api/API";
+import { createAppAsyncThunk, handleServerError } from "common/utils";
+import { authAPI, ResponseUserType } from "common/api/API";
 import { FieldValues } from "react-hook-form";
 
-const login = createAppAsyncThunk<{ isLoggedIn: boolean }, FieldValues>
+const login = createAppAsyncThunk<ResponseUserType, FieldValues>
 ("auth/login", async (arg, thunkAPI) => {
   const { dispatch, rejectWithValue } = thunkAPI;
   try {
     dispatch(appActions.setAppStatus({ status: "loading" }));
     const res = await authAPI.login(arg);
     dispatch(appActions.setAppStatus({ status: "succeeded" }));
-    dispatch(appActions.setAppInitialized({ isInitialized: true }));
-    return { isLoggedIn: true };
+    return res.data;
   } catch (e) {
-    handleServerNetworkError(e, dispatch);
+    handleServerError(e, dispatch);
     return rejectWithValue(null);
   }
 });
-
 
 const logout = createAppAsyncThunk<{ isLoggedIn: boolean }, void>
 ("auth/logout", async (_, thunkAPI) => {
   const { dispatch, rejectWithValue } = thunkAPI;
   try {
     dispatch(appActions.setAppStatus({ status: "loading" }));
-    const res = await authAPI.logout();
+    await authAPI.logout();
     dispatch(appActions.setAppStatus({ status: "succeeded" }));
     return { isLoggedIn: false };
   } catch (e) {
-    handleServerNetworkError(e, dispatch);
+    handleServerError(e, dispatch);
     return rejectWithValue(null);
   }
 });
 
-const initializeApp = createAppAsyncThunk<{ isLoggedIn: boolean }, void>
+const initializeApp = createAppAsyncThunk<ResponseUserType, void>
 ("app/initializeApp", async (_, thunkAPI) => {
   const { dispatch, rejectWithValue } = thunkAPI;
   try {
     const res = await authAPI.me();
     dispatch(authActions.isLoggedIn(true));
-    return { isLoggedIn: true };
+    return res.data;
   } catch (e) {
-    handleServerNetworkError(e, dispatch);
     return rejectWithValue(null);
   } finally {
     dispatch(appActions.setAppInitialized({ isInitialized: true }));
@@ -53,10 +50,10 @@ const register = createAppAsyncThunk<{ isRegister: boolean }, FieldValues>
 ("auth/register", async (arg, thunkAPI) => {
   const { dispatch, rejectWithValue } = thunkAPI;
   try {
-    const res = await authAPI.register(arg);
+    await authAPI.register(arg);
     return { isRegister: true };
   } catch (e) {
-    handleServerNetworkError(e, dispatch);
+    handleServerError(e, dispatch);
     return rejectWithValue(null);
   }
 });
@@ -65,19 +62,19 @@ const forgotPassword = createAppAsyncThunk<void, FieldValues>
 ("auth/forgotPassword", async (arg, thunkAPI) => {
   const { dispatch, rejectWithValue } = thunkAPI;
   try {
-    const res = await authAPI.forgotPassword(arg);
+    await authAPI.forgotPassword(arg);
   } catch (e) {
-    handleServerNetworkError(e, dispatch);
+    handleServerError(e, dispatch);
   }
 });
 
 const setNewPassword = createAppAsyncThunk<void, FieldValues>
 ("auth/setNewPassword", async (arg, thunkAPI) => {
-  const { dispatch, rejectWithValue } = thunkAPI;
+  const { dispatch } = thunkAPI;
   try {
-    const res = await authAPI.setNewPassword(arg);
+    await authAPI.setNewPassword(arg);
   } catch (e) {
-    handleServerNetworkError(e, dispatch);
+    handleServerError(e, dispatch);
   }
 });
 
@@ -86,7 +83,12 @@ const slice = createSlice({
   name: "auth",
   initialState: {
     isLoggedIn: false,
-    isRegister: false
+    isRegister: false,
+    id: "",
+    name: "",
+    email: "",
+    publicCardPacksCount: 0,
+    avatar: '',
   },
   reducers: {
     isLoggedIn: (state, action: PayloadAction<boolean>) => {
@@ -95,24 +97,48 @@ const slice = createSlice({
   },
   extraReducers: builder => {
     builder
-      .addCase(login.fulfilled, (state, action) => {
-        state.isLoggedIn = action.payload.isLoggedIn;
-      })
+      .addCase(login.fulfilled, setUser)
+      .addCase(initializeApp.fulfilled, setUser)
       .addCase(logout.fulfilled, (state, action) => {
         state.isLoggedIn = action.payload.isLoggedIn;
       })
       .addCase(register.fulfilled, (state, action) => {
         state.isRegister = action.payload.isRegister;
       })
-    // .addCase(initializeApp.fulfilled, (state, action) => {
-    //   state.isLoggedIn = action.payload.isLoggedIn;
-    // });
   }
 });
 
 export const authReducer = slice.reducer;
 export const authActions = slice.actions;
 export const authThunks = { login, logout, initializeApp, register, forgotPassword, setNewPassword };
+
+type LoginResponse = {
+  _id: string;
+  name: string;
+  email: string;
+  publicCardPacksCount: number;
+  avatar?: string;
+}
+type AuthState = {
+  isLoggedIn: boolean;
+  isRegister: boolean;
+  id: string;
+  name: string;
+  email: string;
+  publicCardPacksCount: number;
+  avatar: string;
+}
+
+function setUser(state: AuthState, action: PayloadAction<LoginResponse >) {
+  const { _id, name, email, publicCardPacksCount, avatar } = action.payload;
+  const ava = avatar ? avatar : "";
+  state.id = _id;
+  state.name = name;
+  state.email = email;
+  state.publicCardPacksCount = publicCardPacksCount;
+  state.avatar = ava;
+  state.isLoggedIn = true;
+}
 
 
 
