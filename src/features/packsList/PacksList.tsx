@@ -1,5 +1,5 @@
 import React from "react";
-import s from "./packsList.module.scss";
+import s from "features/packsList/packsList.module.scss";
 import SuperButton from "common/components/superComponents/superButton/SuperButton";
 import { FilterBlock } from "common/components/filterBlock/FilterBlock";
 import { TablePacksList } from "common/components/tablePacksList/TablePacksList";

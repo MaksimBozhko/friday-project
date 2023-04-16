@@ -1,15 +1,15 @@
 import React from "react"
-import "App.scss"
+import "app/App.scss"
 import { createBrowserRouter, Route, Routes } from "react-router-dom"
 import { Registration } from "common/components/authorization/registration/Registration"
 import { Login } from "common/components/authorization/login/Login"
 import { PasswordRecovery } from "common/components/authorization/passwordRecovery/PasswordRecovery"
-import { Main } from "pages/main/Main"
 import { NotFound } from "common/components/notFound/NotFound"
 import { NewPasswordInput } from "common/components/authorization/newPasswordInput/NewPasswordInput";
 import { CheckEmail } from "common/components/authorization/checkEmail/CheckEmail";
 import { EditProfile } from "common/components/editProfile/EditProfile";
-import  { PacksList } from "pages/packsList/PacksList";
+import  { PacksList } from "features/packsList/PacksList";
+import { Main } from "common/components/main/Main"
 
 export const App = () => {
   return (
@@ -17,7 +17,7 @@ export const App = () => {
       <Main />
       <div className="root">
         <Routes>
-          <Route path="friday-project" element={<PacksList />} />
+          <Route path="friday-project/packs" element={<PacksList />} />
           <Route path="friday-project/login" element={<Login />} />
           <Route path="friday-project/registration" element={<Registration />} />
           <Route path="friday-project/newPassword" element={<NewPasswordInput />} />

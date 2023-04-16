@@ -1,5 +1,5 @@
 import React from "react";
-import s from "./pack.module.scss"
+import s from "features/pack/pack.module.scss"
 import { BtnBack } from "common/components/btnBack/BtnBack";
 import SuperButton from "common/components/superComponents/superButton/SuperButton";
 import SuperInputText from "common/components/superComponents/superInputText/SuperInputText";

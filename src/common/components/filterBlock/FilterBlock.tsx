@@ -1,7 +1,7 @@
 import React from "react";
 import s from "./filterBlock.module.scss";
 import SuperInputText from "common/components/superComponents/superInputText/SuperInputText";
-import { ToggleBtn } from "common/components/utils/ToggleBtn";
+import { ToggleBtn } from "common/utils/ToggleBtn";
 import SuperRange from "common/components/superComponents/superRange/SuperRange";
 import { ReactComponent as ResetFilter } from "common/assets/img/resetFilter.svg";
 
