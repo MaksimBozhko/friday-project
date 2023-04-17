@@ -15,6 +15,7 @@ import { authThunks } from "common/components/authorization/login/authSlice";
 import { useSelector } from "react-redux";
 import { AppRootStateType } from "app/store";
 import Circular from "common/components/Circular";
+import { Cards } from "features/pack/Cards";
 
 export const App = () => {
   const {initializeApp} = useActions(authThunks)
@@ -31,6 +32,7 @@ export const App = () => {
       <div className="root">
         <Routes>
           <Route path="friday-project/" element={<PacksList />} />
+          <Route path="friday-project/cards/:_id" element={<Cards />} />
           <Route path="friday-project/login" element={<Login />} />
           <Route path="friday-project/registration" element={<Registration />} />
           <Route path="friday-project/set-new-password/:token" element={<NewPasswordInput />} />

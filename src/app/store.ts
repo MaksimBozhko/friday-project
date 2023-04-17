@@ -4,12 +4,14 @@ import { configureStore } from "@reduxjs/toolkit";
 import { authReducer } from "common/components/authorization/login/authSlice";
 import { appReducer } from "app/appSlice";
 import { packReducer } from "features/packsList/packsSlice";
+import { cardReducer } from "features/pack/cardsSlice";
 
 
 const rootReducer = combineReducers({
 	auth: authReducer,
 	app: appReducer,
-	pack: packReducer
+	pack: packReducer,
+	card: cardReducer
 })
 
 export const store = configureStore({

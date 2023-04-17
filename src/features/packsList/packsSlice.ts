@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { appActions } from "app/appSlice";
 import { createAppAsyncThunk, handleServerError } from "common/utils";
 import { packsAPI } from "common/api/API";
+import { PackType, ResponsePackType } from "common/types";
 
 const fetchPack = createAppAsyncThunk<ResponsePackType, void>
 ("pack/fetch", async (_, thunkAPI) => {
@@ -86,29 +87,3 @@ const slice = createSlice({
 
 export const packReducer = slice.reducer;
 export const packThunks = { fetchPack, createPack, deletePack, updatePack };
-
-export type ResponsePackType = {
-  cardPacks: PackType[]
-  cardPacksTotalCount: number
-  maxCardsCount: number
-  minCardsCount: number
-  page: number
-  pageCount: number
-}
-export type PackType = {
-  _id: string
-  user_id: string
-  name: string
-  user_name: string
-  cardsCount: number
-  grade: number
-  created: string
-  updated: string
-}
-
-export type ResponseCardType = {
-  cards: any
-}
-
-
-

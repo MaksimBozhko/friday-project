@@ -59,14 +59,14 @@ export const cardsAPI = {
   fetch(id: string) {
     return instance.get(`cards/card?cardsPack_id=${id}`);
   },
-  create() {
-    return instance.post("cards/card", { question: "it is question", answer: "it is answer" });
+  create(arg: { question: string, answer: string }) {
+    return instance.post("cards/card", arg);
   },
   delete(id: string) {
     return instance.delete(`cards/card?id=${id}`);
   },
-  update(id: string) {
-    return instance.put("cards/card", { _id: id, question: "it is new question" });
+  update(arg: { _id: string, question: string }) {
+    return instance.put("cards/card", arg);
   }
 };
 

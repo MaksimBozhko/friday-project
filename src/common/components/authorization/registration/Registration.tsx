@@ -17,7 +17,7 @@ export const Registration = () => {
   const [password, setPassword] = useState('')
   const appError = useSelector((state: AppRootStateType) => state.app.error)
   const [error, setError] = useState("")
-debugger
+
   const onChangeHandler = (e: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
     setPassword(e.currentTarget.value);
   }

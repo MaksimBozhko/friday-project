@@ -1,17 +1,11 @@
-import React, { useEffect } from "react";
-import s from "common/components/tablePacksList/table.module.scss"
-import { useActions } from "common/hooks";
-import { packThunks } from "features/packsList/packsSlice";
+import React from "react";
+import s from "common/components/tablePacksList/table.module.scss";
 import { useSelector } from "react-redux";
 import { AppRootStateType } from "app/store";
-import { logger } from "@storybook/node-logger";
+import { NavLink } from "react-router-dom";
 
 export const TablePacksList = () => {
-  const { fetchPack } = useActions(packThunks)
-  const cardPacks = useSelector((state: AppRootStateType) => state.pack.cardPacks)
-  useEffect(() => {
-    fetchPack()
-  }, [])
+  const cardPacks = useSelector((state: AppRootStateType) => state.pack.cardPacks);
   return (
     <table className={s.table}>
       <thead className={s.head}>
@@ -26,7 +20,11 @@ export const TablePacksList = () => {
       <tbody className={s.body}>
       {cardPacks.map(pack => (
         <tr key={pack._id} className={s.row}>
-          <td>{pack.name}</td>
+          <td>
+            <NavLink to={`/friday-project/cards/${pack._id}`}>
+              {pack.name}
+            </NavLink>
+          </td>
           <td>{pack.cardsCount}</td>
           <td>{pack.updated}</td>
           <td>{pack.user_name}</td>
@@ -39,4 +37,4 @@ export const TablePacksList = () => {
       </tbody>
     </table>
   );
-}
+};

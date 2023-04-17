@@ -1,40 +1,10 @@
-import React from 'react';
-import s from "common/components/tablePacksList/table.module.scss"
+import React from "react";
+import s from "common/components/tablePacksList/table.module.scss";
+import { useSelector } from "react-redux";
+import { AppRootStateType } from "app/store";
 
 export const TableCardsList = () => {
-  const data = [
-    {
-      question: 'question',
-      answer: 'answer',
-      lastUpdated: 'lastUpdated',
-      grade: 'grade',
-    },
-    {
-      question: 'question',
-      answer: 'answer',
-      lastUpdated: 'lastUpdated',
-      grade: 'grade',
-    },
-    {
-      question: 'question',
-      answer: 'answer',
-      lastUpdated: 'lastUpdated',
-      grade: 'grade',
-    },
-    {
-      question: 'question',
-      answer: 'answer',
-      lastUpdated: 'lastUpdated',
-      grade: 'grade',
-    },
-    {
-      question: 'question',
-      answer: 'answer',
-      lastUpdated: 'lastUpdated',
-      grade: 'grade',
-    },
-
-  ]
+  const cardPacks = useSelector((state: AppRootStateType) => state.card.cards);
   return (
     <table className={s.table}>
       <thead className={s.head}>
@@ -46,15 +16,15 @@ export const TableCardsList = () => {
       </tr>
       </thead>
       <tbody className={s.body}>
-      {data.map((row, index) => (
-        <tr key={index} className={s.row}>
-          <td>{row.question}</td>
-          <td>{row.answer}</td>
-          <td>{row.lastUpdated}</td>
-          <td>{row.grade}</td>
+      {cardPacks.map(card => (
+        <tr key={card._id} className={s.row}>
+          <td>{card.question}</td>
+          <td>{card.answer}</td>
+          <td>{card.updated}</td>
+          <td>{card.grade}</td>
         </tr>
       ))}
       </tbody>
     </table>
   );
-}
+};
