@@ -7,7 +7,6 @@ const fetchPack = createAppAsyncThunk<ResponsePackType, void>
 ("pack/fetch", async (_, thunkAPI) => {
   const { dispatch, rejectWithValue } = thunkAPI;
   try {
-    debugger
     dispatch(appActions.setAppStatus({ status: "loading" }));
     const res = await packsAPI.fetch();
     dispatch(appActions.setAppStatus({ status: "succeeded" }));
@@ -86,7 +85,6 @@ const slice = createSlice({
 });
 
 export const packReducer = slice.reducer;
-export const packActions = slice.actions;
 export const packThunks = { fetchPack, createPack, deletePack, updatePack };
 
 export type ResponsePackType = {

@@ -2,56 +2,16 @@ import React, { useEffect } from "react";
 import s from "common/components/tablePacksList/table.module.scss"
 import { useActions } from "common/hooks";
 import { packThunks } from "features/packsList/packsSlice";
+import { useSelector } from "react-redux";
+import { AppRootStateType } from "app/store";
+import { logger } from "@storybook/node-logger";
 
 export const TablePacksList = () => {
   const { fetchPack } = useActions(packThunks)
+  const cardPacks = useSelector((state: AppRootStateType) => state.pack.cardPacks)
   useEffect(() => {
     fetchPack()
   }, [])
-  const data = [
-    {
-      name: 'name',
-      cards: 'Cards',
-      lastUpdated: 'lastUpdated',
-      createdBy: 'createdBy',
-      actions: 'actions',
-    },
-    {
-      name: 'name',
-      cards: 'Cards',
-      lastUpdated: 'lastUpdated',
-      createdBy: 'createdBy',
-      actions: 'actions',
-    },
-    {
-      name: 'name',
-      cards: 'Cards',
-      lastUpdated: 'lastUpdated',
-      createdBy: 'createdBy',
-      actions: 'actions',
-    },
-    {
-      name: 'name',
-      cards: 'Cards',
-      lastUpdated: 'lastUpdated',
-      createdBy: 'createdBy',
-      actions: 'actions',
-    },{
-      name: 'name',
-      cards: 'Cards',
-      lastUpdated: 'lastUpdated',
-      createdBy: 'createdBy',
-      actions: 'actions',
-    },{
-      name: 'name',
-      cards: 'Cards',
-      lastUpdated: 'lastUpdated',
-      createdBy: 'createdBy',
-      actions: 'actions',
-    },
-
-
-  ]
   return (
     <table className={s.table}>
       <thead className={s.head}>
@@ -64,12 +24,12 @@ export const TablePacksList = () => {
       </tr>
       </thead>
       <tbody className={s.body}>
-      {data.map((row, index) => (
-        <tr key={index} className={s.row}>
-          <td>{row.name}</td>
-          <td>{row.cards}</td>
-          <td>{row.lastUpdated}</td>
-          <td>{row.createdBy}</td>
+      {cardPacks.map(pack => (
+        <tr key={pack._id} className={s.row}>
+          <td>{pack.name}</td>
+          <td>{pack.cardsCount}</td>
+          <td>{pack.updated}</td>
+          <td>{pack.user_name}</td>
           <td>
             <button>Edit</button>
             <button>Delete</button>
