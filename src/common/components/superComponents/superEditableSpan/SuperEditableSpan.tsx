@@ -1,7 +1,7 @@
 import React, { DetailedHTMLProps, HTMLAttributes, InputHTMLAttributes, useState } from "react";
 import s from "common/components/superComponents/superEditableSpan/SuperEditableSpan.module.scss";
 import SuperInputText from "common/components/superComponents/superInputText/SuperInputText";
-import editIcon from "common/assets/img/edit.svg";
+import editIcon from "common/assets/img/tableIcon/Edit.svg";
 
 // тип пропсов обычного инпута
 type DefaultInputPropsType = DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>,

@@ -18,7 +18,7 @@ export const Cards = () => {
 
   useEffect(() => {
     fetchCard(params as { _id: string });
-  }, [pack, params, fetchCard]);
+  }, [params, fetchCard]);
 
   return (
     <div>

@@ -53,3 +53,11 @@ export type PackType = {
 	created: string
 	updated: string
 }
+
+//filter params type
+export type FilterParamsType = Partial<{
+	packName: string
+	user_id: string
+	min: number
+	max: number
+}>

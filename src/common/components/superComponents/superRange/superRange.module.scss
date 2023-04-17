@@ -1,0 +1,16 @@
+@import "../../../assets/scss/mixins";
+
+.rangeBlock {
+  @include FlexCenter;
+
+  .number {
+    @include FontStyle(600, 16px, 20px);
+    @include FlexCenter(row, center, center);
+    text-align: center;
+    width: 36px;
+    height: 36px;
+    background-color: #FFFFFF;
+    border: 1px solid #D9D9D9;
+    border-radius: 2px;
+  }
+}

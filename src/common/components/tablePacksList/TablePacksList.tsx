@@ -3,9 +3,13 @@ import s from "common/components/tablePacksList/table.module.scss";
 import { useSelector } from "react-redux";
 import { AppRootStateType } from "app/store";
 import { NavLink } from "react-router-dom";
+import { ReactComponent as Learn } from "common/assets/img/tableIcon/teacher.svg";
+import { ReactComponent as Edit } from "common/assets/img/tableIcon/Edit.svg";
+import { ReactComponent as Delete } from "common/assets/img/tableIcon/Delete.svg";
 
 export const TablePacksList = () => {
   const cardPacks = useSelector((state: AppRootStateType) => state.pack.cardPacks);
+  const myId = useSelector((state: AppRootStateType) => state.auth.id);
   return (
     <table className={s.table}>
       <thead className={s.head}>
@@ -29,8 +33,13 @@ export const TablePacksList = () => {
           <td>{pack.updated}</td>
           <td>{pack.user_name}</td>
           <td>
-            <button>Edit</button>
-            <button>Delete</button>
+            <Learn />
+            {myId === pack._id && (
+              <>
+                <Edit />
+                <Delete />
+              </>
+            )}
           </td>
         </tr>
       ))}

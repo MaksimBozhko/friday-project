@@ -2,14 +2,14 @@ import { createSlice } from "@reduxjs/toolkit";
 import { appActions } from "app/appSlice";
 import { createAppAsyncThunk, handleServerError } from "common/utils";
 import { packsAPI } from "common/api/API";
-import { PackType, ResponsePackType } from "common/types";
+import { FilterParamsType, PackType, ResponsePackType } from "common/types";
 
-const fetchPack = createAppAsyncThunk<ResponsePackType, void>
-("pack/fetch", async (_, thunkAPI) => {
+const fetchPack = createAppAsyncThunk<ResponsePackType, FilterParamsType>
+("pack/fetch", async (arg, thunkAPI) => {
   const { dispatch, rejectWithValue } = thunkAPI;
   try {
     dispatch(appActions.setAppStatus({ status: "loading" }));
-    const res = await packsAPI.fetch();
+    const res = await packsAPI.fetch(arg);
     dispatch(appActions.setAppStatus({ status: "succeeded" }));
     return res.data;
   } catch (e) {
@@ -24,7 +24,7 @@ const createPack = createAppAsyncThunk<void, { name: string }>
   try {
     dispatch(appActions.setAppStatus({ status: "loading" }));
     await packsAPI.create(name);
-    await packsAPI.fetch();
+    await packsAPI.fetch({});
     dispatch(appActions.setAppStatus({ status: "succeeded" }));
   } catch (e) {
     handleServerError(e, dispatch);
@@ -38,7 +38,7 @@ const deletePack = createAppAsyncThunk<void, { id: string }>
   try {
     dispatch(appActions.setAppStatus({ status: "loading" }));
     await packsAPI.delete(id);
-    await packsAPI.fetch();
+    await packsAPI.fetch({});
     dispatch(appActions.setAppStatus({ status: "succeeded" }));
   } catch (e) {
     handleServerError(e, dispatch);
@@ -52,7 +52,7 @@ const updatePack = createAppAsyncThunk<void, { id: string, name: string }>
   try {
     dispatch(appActions.setAppStatus({ status: "loading" }));
     await packsAPI.update(arg);
-    await packsAPI.fetch();
+    await packsAPI.fetch({});
     dispatch(appActions.setAppStatus({ status: "succeeded" }));
   } catch (e) {
     handleServerError(e, dispatch);

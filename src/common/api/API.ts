@@ -1,5 +1,6 @@
 import axios from "axios";
 import { FieldValues } from "react-hook-form";
+import { FilterParamsType } from "common/types";
 
 export const instance = axios.create({
   // baseURL: process.env.REACT_APP_BACK_URL || 'http://localhost:7542/2.0/' ,
@@ -40,8 +41,10 @@ export const authAPI = {
 };
 
 export const packsAPI = {
-  fetch() {
-    return instance.get("cards/pack");
+  fetch(arg: FilterParamsType) {
+    return instance.get("cards/pack", {
+      params: arg
+    });
   },
   create(name: string) {
     return instance.post("cards/pack", { name });

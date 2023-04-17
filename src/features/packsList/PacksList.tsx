@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import s from "features/packsList/packsList.module.scss";
 import SuperButton from "common/components/superComponents/superButton/SuperButton";
 import { FilterBlock } from "common/components/filterBlock/FilterBlock";
@@ -12,11 +12,11 @@ import { packThunks } from "features/packsList/packsSlice";
 
 export const PacksList = () => {
   const isLoggedIn = useSelector((state: AppRootStateType) => state.auth.isLoggedIn);
-  const { fetchPack } = useActions(packThunks);
+  const { createPack } = useActions(packThunks);
 
-  useEffect(() => {
-    fetchPack();
-  }, [fetchPack]);
+  const addPackHandler = () => {
+    createPack({ name: "my Pack" });
+  };
 
   if (!isLoggedIn) {
     return <Navigate to={"login"} />;
@@ -24,7 +24,7 @@ export const PacksList = () => {
   return <>
     <div className={s.header}>
       <h2 className={s.title}>Packs list</h2>
-      <SuperButton className={s.btn}>Add new pack</SuperButton>
+      <SuperButton className={s.btn} onClick={addPackHandler}>Add new pack</SuperButton>
     </div>
     <FilterBlock />
     <TablePacksList />
