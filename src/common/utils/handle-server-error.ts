@@ -10,7 +10,6 @@ import { appActions } from "app/appSlice";
  */
 export const handleServerError = (e: unknown, dispatch: Dispatch) => {
 	const err = e as Error | AxiosError<{ error: string }>
-	debugger
 	if (axios.isAxiosError(err)) {
 		const error = err.response?.data.error ? err.response?.data.error : err.message
 		dispatch(appActions.setAppError({error}))

@@ -16,7 +16,6 @@ export const NewPasswordInput = () => {
   const error = useSelector((state: AppRootStateType) => state.app.error)
   const { register, handleSubmit } = useForm();
   const { token } = useParams();
-  console.log(token);
   const onSubmit: SubmitHandler<FieldValues> = (FieldValues) => {
     setNewPassword({ ...FieldValues, resetPasswordToken: token });
     navigate('/friday-project/login')
