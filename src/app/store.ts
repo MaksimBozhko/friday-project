@@ -3,11 +3,13 @@ import { ThunkDispatch } from "redux-thunk";
 import { configureStore } from "@reduxjs/toolkit";
 import { authReducer } from "common/components/authorization/login/authSlice";
 import { appReducer } from "app/appSlice";
+import { packReducer } from "features/packsList/packsSlice";
 
 
 const rootReducer = combineReducers({
 	auth: authReducer,
-	app: appReducer
+	app: appReducer,
+	pack: packReducer
 })
 
 export const store = configureStore({

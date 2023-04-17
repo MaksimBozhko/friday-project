@@ -1,7 +1,13 @@
-import React from 'react';
+import React, { useEffect } from "react";
 import s from "common/components/tablePacksList/table.module.scss"
+import { useActions } from "common/hooks";
+import { packThunks } from "features/packsList/packsSlice";
 
 export const TablePacksList = () => {
+  const { fetchPack } = useActions(packThunks)
+  useEffect(() => {
+    fetchPack()
+  }, [])
   const data = [
     {
       name: 'name',

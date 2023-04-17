@@ -24,7 +24,7 @@ export const authAPI = {
   updateProfile(data: FieldValues) {
     return instance.put<ResponseUserType>("auth/me", data);
   },
-  forgotPassword({email}: FieldValues) {
+  forgotPassword({ email }: FieldValues) {
     const data = {
       email,
       from: "test-front-admin <ai73a@yandex.by>", // можно указать разработчика фронта)
@@ -36,6 +36,37 @@ export const authAPI = {
   },
   setNewPassword(data: FieldValues) {
     return instance.post("auth/set-new-password", data);
+  }
+};
+
+export const packsAPI = {
+  fetch() {
+    return instance.get("cards/pack");
+  },
+  create(name: string) {
+    return instance.post("cards/pack", { name });
+  },
+  delete(id: string) {
+    return instance.delete(`cards/pack?id=${id}`);
+  },
+  update({ id, name }: { id: string, name: string }) {
+    return instance.put("cards/pack", { _id: id, name });
+  }
+
+};
+
+export const cardsAPI = {
+  fetch(id: string) {
+    return instance.get(`cards/card?cardsPack_id=${id}`);
+  },
+  create() {
+    return instance.post("cards/card", { question: "it is question", answer: "it is answer" });
+  },
+  delete(id: string) {
+    return instance.delete(`cards/card?id=${id}`);
+  },
+  update(id: string) {
+    return instance.put("cards/card", { _id: id, question: "it is new question" });
   }
 };
 
