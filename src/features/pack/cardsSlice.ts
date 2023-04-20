@@ -2,14 +2,14 @@ import { createSlice } from "@reduxjs/toolkit";
 import { appActions } from "app/appSlice";
 import { createAppAsyncThunk, handleServerError } from "common/utils";
 import { cardsAPI } from "common/api/API";
-import { CardType, ResponseCardsType } from "common/types";
+import { CardType, FilterParamsCardType, ResponseCardsType } from "common/types";
 
-const fetchCard = createAppAsyncThunk<ResponseCardsType, { _id: string }>
-("card/fetch", async ({ _id }, thunkAPI) => {
+const fetchCard = createAppAsyncThunk<ResponseCardsType, FilterParamsCardType>
+("card/fetch", async (arg, thunkAPI) => {
   const { dispatch, rejectWithValue } = thunkAPI;
   try {
     dispatch(appActions.setAppStatus({ status: "loading" }));
-    const res = await cardsAPI.fetch(_id);
+    const res = await cardsAPI.fetch(arg);
     dispatch(appActions.setAppStatus({ status: "succeeded" }));
     return res.data;
   } catch (e) {

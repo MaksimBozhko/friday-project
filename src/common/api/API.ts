@@ -1,6 +1,6 @@
 import axios from "axios";
 import { FieldValues } from "react-hook-form";
-import { FilterParamsType } from "common/types";
+import { FilterParamsCardType, FilterParamsType } from "common/types";
 
 export const instance = axios.create({
   // baseURL: process.env.REACT_APP_BACK_URL || 'http://localhost:7542/2.0/' ,
@@ -59,8 +59,10 @@ export const packsAPI = {
 };
 
 export const cardsAPI = {
-  fetch(id: string) {
-    return instance.get(`cards/card?cardsPack_id=${id}`);
+  fetch(arg: FilterParamsCardType) {
+    return instance.get(`cards/card?cardsPack_id=${arg.cardsPack_id}`, {
+      params: arg
+    });
   },
   create(arg: { question: string, answer: string }) {
     return instance.post("cards/card", arg);

@@ -1,5 +1,7 @@
 
 //error types
+import { ChangeEvent } from "react";
+
 type FieldErrorType = {
 	error: string
 	field: string
@@ -60,4 +62,18 @@ export type FilterParamsType = Partial<{
 	user_id: string
 	min: number
 	max: number
+	page: number
+	pageCount: string
+	sortPacks: any
 }>
+
+export type FilterParamsCardType = {
+	cardsPack_id: string
+	cardAnswer?: string
+	cardQuestion?: string
+	min?: number
+	max?: number
+	page?: number
+	pageCount?: string
+	sortCards?: any
+}

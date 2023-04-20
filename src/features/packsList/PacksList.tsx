@@ -7,7 +7,7 @@ import { AppRootStateType } from "app/store";
 import { Navigate } from "react-router-dom";
 import { useActions } from "common/hooks";
 import { packThunks } from "features/packsList/packsSlice";
-import { TablePackList } from "common/components/tablePacksList/TablePackList";
+import { TablePackList } from "common/components/table/TablePackList";
 
 export const PacksList = () => {
   const isLoggedIn = useSelector((state: AppRootStateType) => state.auth.isLoggedIn);

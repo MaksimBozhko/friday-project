@@ -1,0 +1,68 @@
+import * as React from "react";
+import { useEffect } from "react";
+import s from "./table.module.scss";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
+import TablePagination from "@mui/material/TablePagination";
+import { useSelector } from "react-redux";
+import { AppRootStateType } from "app/store";
+import { StyledTableCell, StyledTableRow } from "./tableStyle";
+import { useActions } from "common/hooks";
+import { cardThunks } from "features/pack/cardsSlice";
+
+export function TableCardList() {
+  const { fetchCard } = useActions(cardThunks);
+
+  const { cards, cardsTotalCount, pageCount, page } = useSelector((state: AppRootStateType) => state.card);
+
+  useEffect(() => {
+  }, []);
+
+  const handleChangePage = (event: unknown, newPage: any) => {
+
+  };
+
+  const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
+
+  };
+
+  return (
+    <div className={s.table}>
+      <TableContainer component={Paper}>
+        <Table sx={{ minWidth: 700 }} aria-label="customized table">
+          <TableHead>
+            <TableRow>
+              <StyledTableCell align="left">Question</StyledTableCell>
+              <StyledTableCell align="left">Answer</StyledTableCell>
+              <StyledTableCell align="left">Last Updated</StyledTableCell>
+              <StyledTableCell align="left">Grade</StyledTableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {cards.map((card) => (
+              <StyledTableRow key={card._id}>
+                <StyledTableCell align="left">{card.question}</StyledTableCell>
+                <StyledTableCell align="left">{card.answer}</StyledTableCell>
+                <StyledTableCell align="left">{card.updated}</StyledTableCell>
+                <StyledTableCell align="left">{card.grade}</StyledTableCell>
+              </StyledTableRow>
+            ))}
+          </TableBody>
+        </Table>
+        <TablePagination
+          rowsPerPageOptions={[1, 2, 4, 6, 8, 10, 12, 14]}
+          component="div"
+          count={cardsTotalCount}
+          rowsPerPage={pageCount}
+          page={page - 1}
+          onPageChange={handleChangePage}
+          onRowsPerPageChange={handleChangeRowsPerPage}
+        />
+      </TableContainer>
+    </div>
+  );
+}

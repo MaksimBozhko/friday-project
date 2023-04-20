@@ -7,12 +7,7 @@
       "esnext"
     ],
     "baseUrl": "src",
-    "paths": {
-//      "@components/*": ["components/*"],
-//      "@common/*": ["components/common/*"],
-//      "@authorization/*": ["src/components/common/authorization/*"],
-//      "@superComponents/*": ["src/components/common/authorization/superComponents/*"],
-    },
+    "downlevelIteration": true,
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,

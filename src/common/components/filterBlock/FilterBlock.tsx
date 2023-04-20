@@ -4,54 +4,81 @@ import SuperInputText from "common/components/superComponents/superInputText/Sup
 import { ToggleBtn } from "common/utils/ToggleBtn";
 import SuperRange from "common/components/superComponents/superRange/SuperRange";
 import { ReactComponent as ResetFilter } from "common/assets/img/resetFilter.svg";
-import { useActions, useDebounce } from "common/hooks";
+import { useActions } from "common/hooks";
 import { packThunks } from "features/packsList/packsSlice";
-import { useSelector } from "react-redux";
-import { AppRootStateType } from "app/store";
+import { useSearchParams } from "react-router-dom";
+import { debounce } from "lodash";
+import { getSearchParams } from "common/utils/getSearchParams";
 
 export const FilterBlock: FC = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const search = getSearchParams(searchParams);
   const { fetchPack } = useActions(packThunks);
-  const [value, setValue] = useState("");
-  const [showAllOrMyPacks, setShowAllOrMyPacks] = useState("all");
-  const [valueRange1, setValueRange1] = useState(0)
-  const [valueRange2, setValueRange2] = useState(100)
-  const debouncedValue = useDebounce<string>(value, 500)
-  const debouncedValueRange1 = useDebounce<number>(valueRange1, 500)
-  const debouncedValueRange2 = useDebounce<number>(valueRange2, 500)
-  const myId = useSelector((state: AppRootStateType) => state.auth.id);
+  const [value, setValue] = useState(search.packName);
+  const [showAllOrMyPacks, setShowAllOrMyPacks] = useState(search.user_id || "all");
+  const [valueRange1, setValueRange1] = useState(search.min || 0);
+  const [valueRange2, setValueRange2] = useState(search.max || 100);
 
-  const packsShow = showAllOrMyPacks === "my" ? myId : ""
+  useEffect(() => {
+    const delayedFetchPack = debounce(fetchPack, 500); // 500ms debounce delay
+    delayedFetchPack(search);
+    return () => {
+      delayedFetchPack.cancel();
+    };
+  }, [search]);
 
   const onChangeInputHandler = (e: ChangeEvent<HTMLInputElement>) => {
     setValue(e.currentTarget.value);
-  };
-  const toggleBtnChange = (event: React.MouseEvent<HTMLElement>, newAlignment: string) => {
-    setShowAllOrMyPacks(newAlignment);
-  };
-  const rangeChangeHandler = (event: any, value: any) => {
-    if (Array.isArray(value)) {
-      setValueRange1(+event.target.value[0])
-      setValueRange2(+event.target.value[1])
+    if (e.currentTarget.value) {
+      setSearchParams({ ...search, packName: e.currentTarget.value });
     } else {
-      setValueRange1(+event.target.value)
+      setSearchParams({});
     }
-  }
-  const resetFilterHandler = () => {
-    setValue("")
-    setShowAllOrMyPacks("all")
-    setValueRange1(0)
-    setValueRange2(100)
-  }
+  };
 
-  useEffect(() => {
-    fetchPack({packName: value, user_id: packsShow, min: valueRange1, max: valueRange2 });
-  }, [fetchPack, debouncedValue, packsShow, debouncedValueRange1, debouncedValueRange2]);
+  const toggleBtnChange = (event: React.MouseEvent<HTMLElement>, packsShow: string) => {
+    setShowAllOrMyPacks(packsShow);
+    if (packsShow) {
+      setSearchParams({ ...search, user_id: packsShow });
+    } else {
+      setSearchParams({});
+    }
+  };
+
+  const rangeChangeHandler = (event: any, value: any) => {
+    let params = {};
+    if (Array.isArray(value)) {
+      if (event.target.value[0] !== 0 || event.target.value[1] !== 100) {
+        params = { ...search, min: event.target.value[0], max: event.target.value[1] };
+      } else {
+        params = { ...search };
+      }
+      setValueRange1(+event.target.value[0]);
+      setValueRange2(+event.target.value[1]);
+    } else {
+      params = { ...search, min: event.target.value };
+      setValueRange1(+event.target.value);
+    }
+    setSearchParams(params);
+  };
+
+  const resetFilterHandler = () => {
+    setSearchParams({});
+    setValue("");
+    setShowAllOrMyPacks("all");
+    setValueRange1(0);
+    setValueRange2(100);
+  };
 
   return (
     <div className={s.filterBlock}>
       <div className={s.searchBlock}>
         <h3>Search</h3>
-        <SuperInputText className={s.input} placeholder="Provide your text" onChange={onChangeInputHandler} value={value} />
+        <SuperInputText
+          className={s.input}
+          placeholder="Provide your text"
+          onChange={onChangeInputHandler}
+          value={value} />
       </div>
       <div className={s.showPacks}>
         <h3>Show packs cards</h3>
@@ -59,7 +86,8 @@ export const FilterBlock: FC = () => {
       </div>
       <div className={s.numberCards}>
         <h3>Number of cards</h3>
-        <SuperRange value={[valueRange1, valueRange2]} onChange={(e:any) => rangeChangeHandler(e, [valueRange1, valueRange2])} />
+        <SuperRange value={[valueRange1, valueRange2]}
+                    onChange={(e: any) => rangeChangeHandler(e, [valueRange1, valueRange2])} />
       </div>
       <div className={s.resetFilter}>
         <ResetFilter onClick={resetFilterHandler} />
