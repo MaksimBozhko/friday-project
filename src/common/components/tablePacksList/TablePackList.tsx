@@ -16,6 +16,8 @@ import { useSelector } from "react-redux";
 import { AppRootStateType } from "app/store";
 import { useState } from "react";
 import { NavLink, useSearchParams } from "react-router-dom";
+import { useActions } from "common/hooks";
+import { packThunks } from "features/packsList/packsSlice";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -38,20 +40,23 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 export function TablePackList() {
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(10);
-  const cardPacks = useSelector((state: AppRootStateType) => state.pack.cardPacks);
+  // const [pageN, setPage] = useState(0);
+  const { fetchPack } = useActions(packThunks);
+  const [rowsPerPage, setRowsPerPage] = useState(1);
+  const {cardPacks, cardPacksTotalCount, page, pageCount} = useSelector((state: AppRootStateType) => state.pack);
   const myId = useSelector((state: AppRootStateType) => state.auth.id);
+  const [searchParams, setSearchParams] = useSearchParams()
 
-  const handleChangePage = (event: unknown, newPage: number) => {
-    setPage(newPage);
+  const handleChangePage = (event: unknown, newPage: any) => {
+    //setPage(newPage);
 
   };
 
   const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
     setRowsPerPage(+event.target.value);
-    setPage(0);
-  };K
+    setSearchParams({countPack: event.target.value, page: "1"})
+    //setPage(0);
+  };
   return (
     <div className={s.table}>
     <TableContainer component={Paper}>
@@ -88,9 +93,9 @@ export function TablePackList() {
         </TableBody>
       </Table>
       <TablePagination
-        rowsPerPageOptions={[4, 6, 8, 10, 12, 14]}
+        rowsPerPageOptions={[1, 2, 3, 4, 6, 8, 10, 12, 14]}
         component="div"
-        count={5}
+        count={10}
         rowsPerPage={rowsPerPage}
         page={page}
         onPageChange={handleChangePage}
