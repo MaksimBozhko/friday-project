@@ -10,10 +10,8 @@ import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 
 export const EditProfile = () => {
   const { handleSubmit } = useForm();
-  const onSubmit: SubmitHandler<FieldValues> = (FieldValues) => {
-    console.log(FieldValues);
-    // authAPI.updateProfile(FieldValues)
-    //   .then((data) => console.log(data))
+  const onSubmit: SubmitHandler<FieldValues> = () => {
+
   };
   return <>
     <BtnBack />

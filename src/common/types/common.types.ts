@@ -1,6 +1,4 @@
-
 //error types
-import { ChangeEvent } from "react";
 
 type FieldErrorType = {
 	error: string
@@ -74,6 +72,6 @@ export type FilterParamsCardType = {
 	min?: number
 	max?: number
 	page?: number
-	pageCount?: string
+	pageCount?: number
 	sortCards?: any
 }

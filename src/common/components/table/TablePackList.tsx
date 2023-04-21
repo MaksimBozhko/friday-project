@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import s from "./table.module.scss";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -15,11 +15,12 @@ import { AppRootStateType } from "app/store";
 import { NavLink, useSearchParams } from "react-router-dom";
 import { getSearchParams } from "common/utils/getSearchParams";
 import { StyledTableCell, StyledTableRow } from "./tableStyle";
+import { packSelectors } from "features/packsList";
 
 export function TablePackList() {
   const [searchParams, setSearchParams] = useSearchParams();
   const search = getSearchParams(searchParams);
-  const { cardPacks, cardPacksTotalCount, page, pageCount } = useSelector((state: AppRootStateType) => state.pack);
+  const { cardPacks, cardPacksTotalCount, page, pageCount } = useSelector(packSelectors.pack);
   const myId = useSelector((state: AppRootStateType) => state.auth.id);
 
   const handleChangePage = (event: unknown, newPage: any) => {

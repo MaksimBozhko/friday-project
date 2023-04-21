@@ -8,24 +8,28 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useActions } from "common/hooks";
 import { authThunks } from "common/components/authorization/login/authSlice";
 import { useSelector } from "react-redux";
-import { AppRootStateType } from "app/store";
+import { appSelectors } from "app";
 
 export const NewPasswordInput = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const { setNewPassword } = useActions(authThunks);
-  const error = useSelector((state: AppRootStateType) => state.app.error)
+  const error = useSelector(appSelectors.error);
   const { register, handleSubmit } = useForm();
   const { token } = useParams();
   const onSubmit: SubmitHandler<FieldValues> = (FieldValues) => {
     setNewPassword({ ...FieldValues, resetPasswordToken: token });
-    navigate('/login')
+    navigate("/login");
   };
   return (
     <AuthWrapper>
       <h1 className={s.title}>Create new password</h1>
       <form onSubmit={handleSubmit(onSubmit)} className={s.form}>
-        <TextField {...register("password")} className={s.input} label="Password" type="password"
-                   autoComplete="current-password" variant="standard" />
+        <TextField {...register("password")}
+                   className={s.input}
+                   label="Password"
+                   type="password"
+                   autoComplete="current-password"
+                   variant="standard" />
         {error}
         <label className={s.text}>Create new password and we will send you further instructions to email</label>
         <SuperButton className={s.btn}>Create new password</SuperButton>

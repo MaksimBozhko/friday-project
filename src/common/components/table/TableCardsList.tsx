@@ -1,5 +1,4 @@
 import * as React from "react";
-import { useEffect } from "react";
 import s from "./table.module.scss";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -9,25 +8,22 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import TablePagination from "@mui/material/TablePagination";
 import { useSelector } from "react-redux";
-import { AppRootStateType } from "app/store";
 import { StyledTableCell, StyledTableRow } from "./tableStyle";
 import { useActions } from "common/hooks";
 import { cardThunks } from "features/pack/cardsSlice";
+import { FilterParamsCardType } from "common/types";
+import { cardSelectors } from "features/pack";
 
-export function TableCardList() {
+export function TableCardList({ cardsPack_id }: FilterParamsCardType) {
   const { fetchCard } = useActions(cardThunks);
-
-  const { cards, cardsTotalCount, pageCount, page } = useSelector((state: AppRootStateType) => state.card);
-
-  useEffect(() => {
-  }, []);
+  const { page, pageCount, cardsTotalCount, cards } = useSelector(cardSelectors.card);
 
   const handleChangePage = (event: unknown, newPage: any) => {
-
+    fetchCard({ cardsPack_id, page: newPage + 1, pageCount });
   };
 
   const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
-
+    fetchCard({ cardsPack_id, page, pageCount: +event.target.value });
   };
 
   return (

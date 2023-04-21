@@ -12,24 +12,31 @@ import { useSelector } from "react-redux";
 import { AppRootStateType } from "app/store";
 
 export const Login = () => {
-  const {login} = useActions(authThunks)
-  const isLoggedIn = useSelector((state: AppRootStateType) => state.auth.isLoggedIn)
-  const error = useSelector((state: AppRootStateType) => state.app.error)
-  const {register, handleSubmit} = useForm()
+  const { login } = useActions(authThunks);
+  const isLoggedIn = useSelector((state: AppRootStateType) => state.auth.isLoggedIn);
+  const error = useSelector((state: AppRootStateType) => state.app.error);
+  const { register, handleSubmit } = useForm();
 
-  const onSubmit: SubmitHandler<FieldValues> = (FieldValues) => login(FieldValues)
+  const onSubmit: SubmitHandler<FieldValues> = (FieldValues) => login(FieldValues);
 
-  if (isLoggedIn) {return <Navigate to={'/'}/>}
+  if (isLoggedIn) {
+    return <Navigate to={"/"} />;
+  }
   return (
     <AuthWrapper>
       <h1 className={s.title}>Sign in</h1>
       <form onSubmit={handleSubmit(onSubmit)} className={s.form}>
-        <TextField {...register('email')} className={s.input} label="Email" variant="standard" />
-        <TextField {...register('password')} className={s.input} label="Password" type="password" autoComplete="current-password"
+        <TextField {...register("email")}
+                   className={s.input} label="Email"
+                   variant="standard" />
+        <TextField {...register("password")}
+                   className={s.input} label="Password"
+                   type="password"
+                   autoComplete="current-password"
                    variant="standard" />
         {error}
         <label className={s.checkBox}>
-          <Checkbox {...register('rememberMe')} defaultChecked />
+          <Checkbox {...register("rememberMe")} defaultChecked />
           <p>Remember me</p>
         </label>
         <NavLink className={s.forgotPas} to="/passwordRecovery">Forgot Password?</NavLink>

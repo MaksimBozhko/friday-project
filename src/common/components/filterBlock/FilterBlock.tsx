@@ -14,6 +14,7 @@ export const FilterBlock: FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const search = getSearchParams(searchParams);
   const { fetchPack } = useActions(packThunks);
+
   const [value, setValue] = useState(search.packName);
   const [showAllOrMyPacks, setShowAllOrMyPacks] = useState(search.user_id || "all");
   const [valueRange1, setValueRange1] = useState(search.min || 0);

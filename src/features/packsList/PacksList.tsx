@@ -3,14 +3,14 @@ import s from "features/packsList/packsList.module.scss";
 import SuperButton from "common/components/superComponents/superButton/SuperButton";
 import { FilterBlock } from "common/components/filterBlock/FilterBlock";
 import { useSelector } from "react-redux";
-import { AppRootStateType } from "app/store";
 import { Navigate } from "react-router-dom";
 import { useActions } from "common/hooks";
 import { packThunks } from "features/packsList/packsSlice";
 import { TablePackList } from "common/components/table/TablePackList";
+import { authSelectors } from "common/components/authorization/login";
 
 export const PacksList = () => {
-  const isLoggedIn = useSelector((state: AppRootStateType) => state.auth.isLoggedIn);
+  const isLoggedIn = useSelector(authSelectors.isLoggedIn);
   const { createPack } = useActions(packThunks);
 
   const addPackHandler = () => {

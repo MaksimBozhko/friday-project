@@ -8,39 +8,53 @@ import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { useActions } from "common/hooks";
 import { authThunks } from "common/components/authorization/login/authSlice";
 import { useSelector } from "react-redux";
-import { AppRootStateType } from "app/store";
+import { appSelectors } from "app";
+import { authSelectors } from "../login";
 
 export const Registration = () => {
-  const {register: registration} = useActions(authThunks)
-  const isRegister = useSelector((state: AppRootStateType) => state.auth.isRegister)
-  const {register, handleSubmit} = useForm()
-  const [password, setPassword] = useState('')
-  const appError = useSelector((state: AppRootStateType) => state.app.error)
-  const [error, setError] = useState("")
+  const { register: registration } = useActions(authThunks);
+  const isRegister = useSelector(authSelectors.isRegister);
+  const { register, handleSubmit } = useForm();
+  const [password, setPassword] = useState("");
+  const appError = useSelector(appSelectors.error);
+  const [error, setError] = useState("");
 
   const onChangeHandler = (e: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
     setPassword(e.currentTarget.value);
-  }
+  };
 
   const onSubmit: SubmitHandler<FieldValues> = (FieldValues) => {
     if (password !== FieldValues.password) {
-      setError('different password')
+      setError("different password");
     } else {
-      registration(FieldValues)
-      setError('')
+      registration(FieldValues);
+      setError("");
     }
-  }
+  };
 
-  if (isRegister) {return <Navigate to={'login'}/>}
+  if (isRegister) {
+    return <Navigate to={"login"} />;
+  }
   return (
     <AuthWrapper>
       <h1 className={s.title}>Sign Up</h1>
       <form onSubmit={handleSubmit(onSubmit)} className={s.form}>
-        <TextField {...register('email')} className={s.input} label="Email" variant="standard" />
-        <TextField {...register('password')} className={s.input} label="Password" type="password" autoComplete="current-password"
+        <TextField {...register("email")}
+                   className={s.input}
+                   label="Email"
                    variant="standard" />
-        <TextField className={s.input} label="Confirm password" type="password" autoComplete="current-password"
-                   variant="standard" onChange={onChangeHandler} />
+        <TextField {...register("password")}
+                   className={s.input}
+                   label="Password"
+                   type="password"
+                   autoComplete="current-password"
+                   variant="standard" />
+        <TextField className={s.input}
+                   label="Confirm password"
+                   type="password"
+                   autoComplete="current-password"
+                   variant="standard"
+                   onChange={onChangeHandler} />
         {error || appError}
         <SuperButton className={s.btn}>Sign Up</SuperButton>
       </form>
