@@ -31,7 +31,7 @@ export const Registration = () => {
     }
   }
 
-  if (isRegister) {return <Navigate to={'/friday-project/login'}/>}
+  if (isRegister) {return <Navigate to={'login'}/>}
   return (
     <AuthWrapper>
       <h1 className={s.title}>Sign Up</h1>
@@ -46,7 +46,7 @@ export const Registration = () => {
       </form>
       <div className={s.signIn}>
         <p className={s.account}>Already have an account?</p>
-        <NavLink className={s.signInBtn} to="/friday-project/login">Sign In</NavLink>
+        <NavLink className={s.signInBtn} to="/login">Sign In</NavLink>
       </div>
     </AuthWrapper>
   );

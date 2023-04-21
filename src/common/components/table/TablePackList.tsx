@@ -1,9 +1,7 @@
 import * as React from "react";
 import s from "./table.module.scss";
-import { styled } from "@mui/material/styles";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
-import TableCell, { tableCellClasses } from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
@@ -48,7 +46,7 @@ export function TablePackList() {
             {cardPacks.map((pack) => (
               <StyledTableRow key={pack._id}>
                 <StyledTableCell component="th" scope="row">
-                  <NavLink to={`/friday-project/cards/${pack._id}`}>{pack.name}</NavLink>
+                  <NavLink to={`cards/${pack._id}`}>{pack.name}</NavLink>
                 </StyledTableCell>
                 <StyledTableCell align="left">{pack.cardsCount}</StyledTableCell>
                 <StyledTableCell align="left">{pack.updated}</StyledTableCell>

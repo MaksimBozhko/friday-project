@@ -18,7 +18,7 @@ export const NewPasswordInput = () => {
   const { token } = useParams();
   const onSubmit: SubmitHandler<FieldValues> = (FieldValues) => {
     setNewPassword({ ...FieldValues, resetPasswordToken: token });
-    navigate('/friday-project/login')
+    navigate('/login')
   };
   return (
     <AuthWrapper>

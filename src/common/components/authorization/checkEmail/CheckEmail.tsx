@@ -11,7 +11,7 @@ export const CheckEmail = () => {
       <h1 className={s.title}>Check Email</h1>
       <Email />
       <p className={s.text}>We’ve sent an Email with instructions to example@mail.com</p>
-      <NavLink className={s.loginBtn} to="/friday-project/login">
+      <NavLink className={s.loginBtn} to="/login">
         <SuperButton className={s.btn}>Back to login</SuperButton>
       </NavLink>
     </AuthWrapper>

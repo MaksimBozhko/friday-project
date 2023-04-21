@@ -18,7 +18,7 @@ export const PasswordRecovery = () => {
   const onSubmit: SubmitHandler<FieldValues> = (FieldValues) => {
     console.log(FieldValues);
     forgotPassword(FieldValues)
-    navigate('/friday-project/checkEmail')
+    navigate('/checkEmail')
   }
   return (
     <AuthWrapper>
@@ -31,7 +31,7 @@ export const PasswordRecovery = () => {
       </form>
       <div className={s.toLogin}>
         <p className={s.remember}>Did you remember your password?</p>
-        <NavLink className={s.signInBtn} to="/friday-project/login">Try logging in</NavLink>
+        <NavLink className={s.signInBtn} to="/login">Try logging in</NavLink>
       </div>
     </AuthWrapper>
   );

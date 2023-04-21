@@ -31,15 +31,15 @@ export const App = () => {
       <Main />
       <div className="root">
         <Routes>
-          <Route path="friday-project/" element={<PacksList />} />
-          <Route path="friday-project/cards/:cardsPack_id" element={<Cards />} />
-          <Route path="friday-project/login" element={<Login />} />
-          <Route path="friday-project/registration" element={<Registration />} />
-          <Route path="friday-project/set-new-password/:token" element={<NewPasswordInput />} />
-          <Route path="friday-project/passwordRecovery" element={<PasswordRecovery />} />
-          <Route path="friday-project/checkEmail" element={<CheckEmail />} />
-          <Route path="friday-project/editProfile" element={<EditProfile />} />
-          <Route path="friday-project/*" element={<NotFound />} />
+          <Route path="/" element={<PacksList />} />
+          <Route path="/cards/:cardsPack_id" element={<Cards />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/registration" element={<Registration />} />
+          <Route path="/set-new-password/:token" element={<NewPasswordInput />} />
+          <Route path="/passwordRecovery" element={<PasswordRecovery />} />
+          <Route path="/checkEmail" element={<CheckEmail />} />
+          <Route path="/editProfile" element={<EditProfile />} />
+          <Route path="/*" element={<NotFound />} />
         </Routes>
       </div>
     </div>

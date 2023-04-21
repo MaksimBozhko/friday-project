@@ -7,7 +7,7 @@ import { Provider } from "react-redux";
 import { store } from "app/store";
 
 createRoot(document.getElementById("root") as HTMLElement).render(
-  <BrowserRouter>
+  <BrowserRouter basename={"friday-project"}>
     <Provider store={store}>
       <App />
     </Provider>

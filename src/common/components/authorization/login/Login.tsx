@@ -19,7 +19,7 @@ export const Login = () => {
 
   const onSubmit: SubmitHandler<FieldValues> = (FieldValues) => login(FieldValues)
 
-  if (isLoggedIn) {return <Navigate to={'/friday-project'}/>}
+  if (isLoggedIn) {return <Navigate to={'/'}/>}
   return (
     <AuthWrapper>
       <h1 className={s.title}>Sign in</h1>
@@ -32,12 +32,12 @@ export const Login = () => {
           <Checkbox {...register('rememberMe')} defaultChecked />
           <p>Remember me</p>
         </label>
-        <NavLink className={s.forgotPas} to="/friday-project/passwordRecovery">Forgot Password?</NavLink>
+        <NavLink className={s.forgotPas} to="/passwordRecovery">Forgot Password?</NavLink>
         <SuperButton type="submit" className={s.btn}>Sign In</SuperButton>
       </form>
       <div className={s.signUp}>
         <p className={s.account}>Already have an account?</p>
-        <NavLink className={s.signUpBtn} to="/friday-project/registration">Sign Up</NavLink>
+        <NavLink className={s.signUpBtn} to="/registration">Sign Up</NavLink>
       </div>
 
     </AuthWrapper>
