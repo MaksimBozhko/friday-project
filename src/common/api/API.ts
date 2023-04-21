@@ -48,13 +48,13 @@ export const packsAPI = {
     });
   },
   create(cardsPack: CreatePackRequestType) {
-    return instance.post("cards/pack",  cardsPack);
+    return instance.post("cards/pack",  { cardsPack: cardsPack });
   },
   delete(id: string) {
     return instance.delete(`cards/pack?id=${id}`);
   },
   update(data: UpdatePackRequestType) {
-    return instance.put("cards/pack", data);
+    return instance.put("cards/pack", { cardsPack: data });
   }
 
 };
@@ -66,13 +66,13 @@ export const cardsAPI = {
     });
   },
   create(arg: { question: string, answer: string }) {
-    return instance.post("cards/card", arg);
+    return instance.post("cards/card", { card: arg });
   },
   delete(id: string) {
     return instance.delete(`cards/card?id=${id}`);
   },
   update(arg: { _id: string, question: string }) {
-    return instance.put("cards/card", arg);
+    return instance.put("cards/card", { card: arg });
   }
 };
 

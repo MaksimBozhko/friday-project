@@ -54,7 +54,7 @@ export function TablePackList() {
                 <StyledTableCell align="left">{pack.user_name}</StyledTableCell>
                 <StyledTableCell align="left">
                   <Learn />
-                  {myId === pack._id && (
+                  {myId === pack.user_id && (
                     <>
                       <Edit />
                       <Delete />
