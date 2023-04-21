@@ -2,9 +2,9 @@ import { createSlice } from "@reduxjs/toolkit";
 import { appActions } from "app/appSlice";
 import { createAppAsyncThunk, handleServerError } from "common/utils";
 import { packsAPI } from "common/api/API";
-import { FilterParamsType, PackType, ResponsePackType } from "common/types";
+import { CreatePackRequestType, FetchPackRequestType, PackType, ResponsePackType } from "common/types";
 
-const fetchPack = createAppAsyncThunk<ResponsePackType, FilterParamsType>
+const fetchPack = createAppAsyncThunk<ResponsePackType, FetchPackRequestType>
 ("pack/fetch", async (arg, thunkAPI) => {
   const { dispatch, rejectWithValue } = thunkAPI;
   try {
@@ -18,12 +18,12 @@ const fetchPack = createAppAsyncThunk<ResponsePackType, FilterParamsType>
   }
 });
 
-const createPack = createAppAsyncThunk<void, { name: string }>
+const createPack = createAppAsyncThunk<void, CreatePackRequestType>
 ("pack/create", async ({ name }, thunkAPI) => {
   const { dispatch, rejectWithValue } = thunkAPI;
   try {
     dispatch(appActions.setAppStatus({ status: "loading" }));
-    await packsAPI.create(name);
+    await packsAPI.create({ name });
     await packsAPI.fetch({});
     dispatch(appActions.setAppStatus({ status: "succeeded" }));
   } catch (e) {

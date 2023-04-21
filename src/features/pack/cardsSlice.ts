@@ -2,9 +2,9 @@ import { createSlice } from "@reduxjs/toolkit";
 import { appActions } from "app/appSlice";
 import { createAppAsyncThunk, handleServerError } from "common/utils";
 import { cardsAPI } from "common/api/API";
-import { CardType, FilterParamsCardType, ResponseCardsType } from "common/types";
+import { CardType, FetchCardRequestType, ResponseCardsType } from "common/types";
 
-const fetchCard = createAppAsyncThunk<ResponseCardsType, FilterParamsCardType>
+const fetchCard = createAppAsyncThunk<ResponseCardsType, FetchCardRequestType>
 ("card/fetch", async (arg, thunkAPI) => {
   const { dispatch, rejectWithValue } = thunkAPI;
   try {

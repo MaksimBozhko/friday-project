@@ -14,7 +14,7 @@ export const PacksList = () => {
   const { createPack } = useActions(packThunks);
 
   const addPackHandler = () => {
-    createPack({ name: "my Pack" });
+    createPack({ name: "name pack" });
   };
 
   if (!isLoggedIn) {

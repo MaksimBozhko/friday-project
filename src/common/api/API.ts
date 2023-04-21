@@ -1,10 +1,11 @@
 import axios from "axios";
 import { FieldValues } from "react-hook-form";
-import { FilterParamsCardType, FilterParamsType } from "common/types";
+import { CreatePackRequestType, FetchCardRequestType, FetchPackRequestType, UpdatePackRequestType } from "common/types";
 
 export const instance = axios.create({
   // baseURL: process.env.REACT_APP_BACK_URL || 'http://localhost:7542/2.0/' ,
   // baseURL: process.env.NODE_ENV === "development" ? "http://localhost:7542/2.0/" : "https://neko-back.herokuapp.com/2.0/",
+   //baseURL: "http://localhost:7542/2.0/" ,
   baseURL: "https://neko-back.herokuapp.com/2.0/",
   withCredentials: true
 });
@@ -41,25 +42,25 @@ export const authAPI = {
 };
 
 export const packsAPI = {
-  fetch(arg: FilterParamsType) {
+  fetch(arg: FetchPackRequestType) {
     return instance.get("cards/pack", {
       params: arg
     });
   },
-  create(name: string) {
-    return instance.post("cards/pack", { name });
+  create(cardsPack: CreatePackRequestType) {
+    return instance.post("cards/pack",  cardsPack);
   },
   delete(id: string) {
     return instance.delete(`cards/pack?id=${id}`);
   },
-  update({ id, name }: { id: string, name: string }) {
-    return instance.put("cards/pack", { _id: id, name });
+  update(data: UpdatePackRequestType) {
+    return instance.put("cards/pack", data);
   }
 
 };
 
 export const cardsAPI = {
-  fetch(arg: FilterParamsCardType) {
+  fetch(arg: FetchCardRequestType) {
     return instance.get(`cards/card?cardsPack_id=${arg.cardsPack_id}`, {
       params: arg
     });

@@ -11,10 +11,10 @@ import { useSelector } from "react-redux";
 import { StyledTableCell, StyledTableRow } from "./tableStyle";
 import { useActions } from "common/hooks";
 import { cardThunks } from "features/pack/cardsSlice";
-import { FilterParamsCardType } from "common/types";
+import { FetchCardRequestType } from "common/types";
 import { cardSelectors } from "features/pack";
 
-export function TableCardList({ cardsPack_id }: FilterParamsCardType) {
+export function TableCardList({ cardsPack_id }: FetchCardRequestType) {
   const { fetchCard } = useActions(cardThunks);
   const { page, pageCount, cardsTotalCount, cards } = useSelector(cardSelectors.card);
 

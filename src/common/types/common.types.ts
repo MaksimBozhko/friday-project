@@ -54,8 +54,7 @@ export type PackType = {
 	updated: string
 }
 
-//filter params type
-export type FilterParamsType = Partial<{
+export type FetchPackRequestType = Partial<{
 	packName: string
 	user_id: string
 	min: number
@@ -65,7 +64,20 @@ export type FilterParamsType = Partial<{
 	sortPacks: any
 }>
 
-export type FilterParamsCardType = {
+export type CreatePackRequestType = Partial<{
+	name: string
+	deckCover: string
+	private: boolean
+}>
+
+export type UpdatePackRequestType = Partial<{
+	_id: string
+	name: string
+}>
+
+//card types
+
+export type FetchCardRequestType = {
 	cardsPack_id: string
 	cardAnswer?: string
 	cardQuestion?: string
@@ -75,3 +87,20 @@ export type FilterParamsCardType = {
 	pageCount?: number
 	sortCards?: any
 }
+
+export type CreateCardRequestType = Partial<{
+	cardsPack_id: string
+	question: string
+	answer: string
+	grade: number
+	shots: number
+	answerImg: string
+	questionImg: string
+	questionVideo: string
+	answerVideo:string
+}>
+
+export type UpdateCardRequestType = Partial<{
+	_id: string
+	question: string
+}>
