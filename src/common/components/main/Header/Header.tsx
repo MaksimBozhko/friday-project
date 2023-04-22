@@ -13,7 +13,7 @@ export const Header = () => {
   const {logout} = useActions(authThunks)
 
   const onClickHandler = () => {
-    logout()
+    logout({})
   }
 
   return (

@@ -22,7 +22,7 @@ export const App = () => {
   const isInitialized = useSelector(appSelectors.isInitialized);
 
   useEffect(() => {
-    initializeApp();
+    initializeApp({});
   }, [initializeApp]);
 
   if (!isInitialized) {
