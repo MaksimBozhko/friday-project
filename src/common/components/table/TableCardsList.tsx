@@ -13,6 +13,7 @@ import { useActions } from "common/hooks";
 import { cardThunks } from "features/pack/cardsSlice";
 import { FetchCardRequestType } from "common/types";
 import { cardSelectors } from "features/pack";
+import { CardIcons } from "common/components/table/CardIcons"
 
 export function TableCardList({ cardsPack_id }: FetchCardRequestType) {
   const { fetchCard } = useActions(cardThunks);
@@ -46,7 +47,9 @@ export function TableCardList({ cardsPack_id }: FetchCardRequestType) {
                 <StyledTableCell align="left">{card.answer}</StyledTableCell>
                 <StyledTableCell align="left">{card.updated}</StyledTableCell>
                 <StyledTableCell align="left">{card.grade}</StyledTableCell>
-                <StyledTableCell align="left">abc</StyledTableCell>
+                <StyledTableCell align="left">
+                  <CardIcons user_id={card.user_id} id={card._id}/>
+                </StyledTableCell>
               </StyledTableRow>
             ))}
           </TableBody>
