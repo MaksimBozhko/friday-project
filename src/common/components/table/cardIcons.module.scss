@@ -1,0 +1,11 @@
+@import "../../assets/scss/mixins";
+
+.table {
+  padding: 25px 0 40px;
+}
+
+.icons {
+  @include FlexCenter;
+  margin: auto;
+  width: 60px;
+}
