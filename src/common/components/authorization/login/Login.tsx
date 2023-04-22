@@ -46,7 +46,6 @@ export const Login = () => {
         <p className={s.account}>Already have an account?</p>
         <NavLink className={s.signUpBtn} to="/registration">Sign Up</NavLink>
       </div>
-
     </AuthWrapper>
   );
 };

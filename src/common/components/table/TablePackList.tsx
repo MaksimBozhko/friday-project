@@ -30,6 +30,11 @@ export function TablePackList() {
   const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchParams({ ...search, pageCount: event.target.value, page: "1" });
   };
+
+  const editPackHandler = () => {
+  };
+  const deletePackHandler = () => {
+  };
   return (
     <div className={s.table}>
       <TableContainer component={Paper}>
@@ -53,13 +58,15 @@ export function TablePackList() {
                 <StyledTableCell align="left">{pack.updated}</StyledTableCell>
                 <StyledTableCell align="left">{pack.user_name}</StyledTableCell>
                 <StyledTableCell align="left">
-                  <Learn />
-                  {myId === pack.user_id && (
-                    <>
-                      <Edit />
-                      <Delete />
-                    </>
-                  )}
+                  <div className={s.icons}>
+                    <Learn />
+                    {myId === pack.user_id && (
+                      <>
+                        <Edit onClick={editPackHandler} />
+                        <Delete onClick={deletePackHandler} />
+                      </>
+                    )}
+                  </div>
                 </StyledTableCell>
               </StyledTableRow>
             ))}

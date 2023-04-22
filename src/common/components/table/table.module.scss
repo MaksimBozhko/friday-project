@@ -3,3 +3,8 @@
 .table {
   padding: 25px 0 40px;
 }
+
+.icons {
+  @include FlexCenter;
+  width: 100px;
+}

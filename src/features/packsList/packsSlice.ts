@@ -19,11 +19,11 @@ const fetchPack = createAppAsyncThunk<ResponsePackType, FetchPackRequestType>
 });
 
 const createPack = createAppAsyncThunk<void, CreatePackRequestType>
-("pack/create", async ({ name }, thunkAPI) => {
+("pack/create", async (arg, thunkAPI) => {
   const { dispatch, rejectWithValue } = thunkAPI;
   try {
     dispatch(appActions.setAppStatus({ status: "loading" }));
-    await packsAPI.create({ name });
+    await packsAPI.create(arg);
     await packsAPI.fetch({});
     dispatch(appActions.setAppStatus({ status: "succeeded" }));
   } catch (e) {
