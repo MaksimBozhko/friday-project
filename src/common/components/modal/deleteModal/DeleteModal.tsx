@@ -1,5 +1,5 @@
 import React, { FC } from "react"
-import s from "common/components/popup/pack/Pack.module.scss"
+import s from "./deletePack.module.scss"
 import SuperButton from "common/components/superComponents/superButton/SuperButton"
 import { ReactComponent as Close } from "common/assets/img/close.svg"
 import { Modal } from "common/components/modal/Modal"
@@ -11,20 +11,35 @@ type DeletePropsType = {
   isOpen?: boolean
   onClose?: () => void
   className?: string
+  callback?: () => void
 }
 
-export const Delete: FC<DeletePropsType> = ({
+export const DeleteModal: FC<DeletePropsType> = ({
                                               title,
                                               name,
                                               isOpen,
                                               onClose,
-                                              className
+                                              className,
+                                              callback
                                             }) => {
+  const onCloseHandler = () => {
+    if (onClose) {
+      onClose()
+    }
+  }
+  const onDeleteHandler = () => {
+    if (callback) {
+      callback()
+    }
+    if (onClose) {
+      onClose()
+    }
+  }
   return (
     <Modal
       isOpen={isOpen}
       onClose={onClose}
-      className={cls('', {}, [className])}
+      className={cls("", {}, [className])}
     >
       <div className={s.titleBlock}>
         <h5 className={s.title}>{title}</h5>
@@ -33,8 +48,16 @@ export const Delete: FC<DeletePropsType> = ({
       <span>Do you really want to remove</span> {name}?
       <p>All cards will be deleted.</p>
       <div className={s.btnBlock}>
-        <SuperButton className={s.btn} xType={"secondary"}>Cancel</SuperButton>
-        <SuperButton className={s.btn} xType={"red"}>Delete</SuperButton>
+        <SuperButton className={s.btn}
+                     xType={"secondary"}
+                     onClick={onCloseHandler}
+        >
+          Cancel</SuperButton>
+        <SuperButton className={s.btn}
+                     xType={"red"}
+                     onClick={onDeleteHandler}
+        >
+          Delete</SuperButton>
       </div>
     </Modal>
   )

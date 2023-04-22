@@ -1,0 +1,7 @@
+@import "../../assets/scss/mixins";
+
+.icons {
+  @include FlexCenter;
+  width: 100px;
+  cursor: pointer;
+}
