@@ -78,6 +78,18 @@ const setNewPassword = createAppAsyncThunk<void, FieldValues>
   }
 });
 
+const updateProfile = createAppAsyncThunk<{name: string, avatar: string}, {name: string, avatar: string}>
+("auth/updateProfile", async (arg, thunkAPI) => {
+  const { dispatch, rejectWithValue } = thunkAPI;
+  try {
+    const res = await authAPI.updateProfile(arg);
+    return { name: res.data.updatedUser.name, avatar: res.data.updatedUser.avatar }
+  } catch (e) {
+    handleServerError(e, dispatch);
+    return rejectWithValue(null)
+  }
+});
+
 
 const slice = createSlice({
   name: "auth",
@@ -105,12 +117,16 @@ const slice = createSlice({
       .addCase(register.fulfilled, (state, action) => {
         state.isRegister = action.payload.isRegister;
       })
+      .addCase(updateProfile.fulfilled, (state, action) => {
+        state.name = action.payload.name;
+        state.avatar = action.payload.avatar;
+      })
   }
 });
 
 export const authReducer = slice.reducer;
 export const authActions = slice.actions;
-export const authThunks = { login, logout, initializeApp, register, forgotPassword, setNewPassword };
+export const authThunks = { login, logout, initializeApp, register, forgotPassword, setNewPassword, updateProfile };
 
 type LoginResponse = {
   _id: string;

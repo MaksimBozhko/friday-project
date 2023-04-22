@@ -30,7 +30,7 @@ export const authAPI = {
     return instance.post<ResponseUserType>("auth/me");
   },
   updateProfile(data: FieldValues) {
-    return instance.put<ResponseUserType>("auth/me", data);
+    return instance.put("auth/me", data);
   },
   forgotPassword({ email }: FieldValues) {
     const data = {
