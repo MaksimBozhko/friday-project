@@ -1,6 +1,12 @@
 import axios from "axios";
 import { FieldValues } from "react-hook-form";
-import { CreatePackRequestType, FetchCardRequestType, FetchPackRequestType, UpdatePackRequestType } from "common/types";
+import {
+  CreateCardRequestType,
+  CreatePackRequestType,
+  FetchCardRequestType,
+  FetchPackRequestType, UpdateCardRequestType,
+  UpdatePackRequestType
+} from "common/types"
 
 export const instance = axios.create({
   // baseURL: process.env.REACT_APP_BACK_URL || 'http://localhost:7542/2.0/' ,
@@ -65,13 +71,13 @@ export const cardsAPI = {
       params: arg
     });
   },
-  create(arg: { question: string, answer: string }) {
+  create(arg:CreateCardRequestType) {
     return instance.post("cards/card", { card: arg });
   },
   delete(id: string) {
     return instance.delete(`cards/card?id=${id}`);
   },
-  update(arg: { _id: string, question: string }) {
+  update(arg: UpdateCardRequestType) {
     return instance.put("cards/card", { card: arg });
   }
 };

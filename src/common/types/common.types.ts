@@ -92,15 +92,22 @@ export type CreateCardRequestType = Partial<{
 	cardsPack_id: string
 	question: string
 	answer: string
-	grade: number
-	shots: number
-	answerImg: string
-	questionImg: string
-	questionVideo: string
-	answerVideo:string
+	grade?: number
+	shots?: number
+	answerImg?: string
+	questionImg?: string
+	questionVideo?: string
+	answerVideo?:string
 }>
 
 export type UpdateCardRequestType = Partial<{
 	_id: string
 	question: string
+	answer: string
+	grade?: number
+	shots?: number
+	answerImg?: string
+	questionImg?: string
+	questionVideo?: string
+	answerVideo?:string
 }>

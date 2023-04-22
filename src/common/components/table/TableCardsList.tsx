@@ -36,6 +36,7 @@ export function TableCardList({ cardsPack_id }: FetchCardRequestType) {
               <StyledTableCell align="left">Answer</StyledTableCell>
               <StyledTableCell align="left">Last Updated</StyledTableCell>
               <StyledTableCell align="left">Grade</StyledTableCell>
+              <StyledTableCell align="left"></StyledTableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -45,6 +46,7 @@ export function TableCardList({ cardsPack_id }: FetchCardRequestType) {
                 <StyledTableCell align="left">{card.answer}</StyledTableCell>
                 <StyledTableCell align="left">{card.updated}</StyledTableCell>
                 <StyledTableCell align="left">{card.grade}</StyledTableCell>
+                <StyledTableCell align="left">abc</StyledTableCell>
               </StyledTableRow>
             ))}
           </TableBody>
