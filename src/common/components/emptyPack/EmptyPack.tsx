@@ -1,30 +1,28 @@
 import React, { FC, useState } from "react"
-import { BtnBack } from "common/components/btnBack/BtnBack";
-import SuperButton from "common/components/superComponents/superButton/SuperButton";
+import { BtnBack } from "common/components/btnBack/BtnBack"
+import SuperButton from "common/components/superComponents/superButton/SuperButton"
 import s from "./emptyPack.module.scss"
-import { PackModal } from "common/components/modal/packModal/PackModal"
 import { CardModal } from "common/components/modal/cardModal/CardModal"
-import { useActions } from "common/hooks"
-import { cardThunks } from "features/pack/cardsSlice"
+import { useCreateCardMutation } from "features/pack/CreateAPI"
 
 type EmptyPackProps = {
   title: string | undefined
-  id: string | undefined
+  cardsPack_id: string | undefined
 }
 
-export const EmptyPack: FC<EmptyPackProps> = ({title = "some pack", id}) => {
-  const {createCard} = useActions(cardThunks)
+export const EmptyPack: FC<EmptyPackProps> = ({ title = "some pack", cardsPack_id }) => {
   const [isOpenModal, setIsOpenModal] = useState<boolean>(false)
+  const [createCard] = useCreateCardMutation()
 
   const onOpenHandler = () => {
     setIsOpenModal(true)
-  };
+  }
   const onClose = () => {
     setIsOpenModal(false)
   }
 
-  const createPackHandler = (arg:{ question: string, answer: string }) => {
-    createCard({cardsPack_id: id ,...arg})
+  const createPackHandler = (arg: { question: string, answer: string }) => {
+    createCard({ cardsPack_id, ...arg })
   }
   return <>
     <BtnBack />
@@ -36,7 +34,7 @@ export const EmptyPack: FC<EmptyPackProps> = ({title = "some pack", id}) => {
       </div>
     </div>
     {isOpenModal && (
-      <CardModal title={"Add new card"} onClose={onClose} callback={createPackHandler}/>
+      <CardModal title={"Add new card"} onClose={onClose} callback={createPackHandler} />
     )}
-  </>;
-};
+  </>
+}

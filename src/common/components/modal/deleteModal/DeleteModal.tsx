@@ -43,7 +43,7 @@ export const DeleteModal: FC<DeletePropsType> = ({
     >
       <div className={s.titleBlock}>
         <h5 className={s.title}>{title}</h5>
-        <div className={s.close}><Close /></div>
+        <div className={s.close} onClick={onCloseHandler}><Close /></div>
       </div>
       <span>Do you really want to remove</span> {name}?
       <p>All cards will be deleted.</p>

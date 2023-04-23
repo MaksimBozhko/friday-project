@@ -1,31 +1,29 @@
-import * as React from "react";
-import s from "./table.module.scss";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import Paper from "@mui/material/Paper";
-import TablePagination from "@mui/material/TablePagination";
-import { useSelector } from "react-redux";
-import { StyledTableCell, StyledTableRow } from "./tableStyle";
-import { useActions } from "common/hooks";
-import { cardThunks } from "features/pack/cardsSlice";
-import { FetchCardRequestType } from "common/types";
-import { cardSelectors } from "features/pack";
+import * as React from "react"
+import s from "./table.module.scss"
+import Table from "@mui/material/Table"
+import TableBody from "@mui/material/TableBody"
+import TableContainer from "@mui/material/TableContainer"
+import TableHead from "@mui/material/TableHead"
+import TableRow from "@mui/material/TableRow"
+import Paper from "@mui/material/Paper"
+import TablePagination from "@mui/material/TablePagination"
+import { StyledTableCell, StyledTableRow } from "./tableStyle"
 import { CardIcons } from "common/components/table/CardIcons"
 
-export function TableCardList({ cardsPack_id }: FetchCardRequestType) {
-  const { fetchCard } = useActions(cardThunks);
-  const { page, pageCount, cardsTotalCount, cards } = useSelector(cardSelectors.card);
+type TableCardListType = {
+  cards: any
+  setPage: (page: number) => void
+  setPageCount: (page: number) => void
+}
+
+export function TableCardList({ cards, setPage, setPageCount }: TableCardListType) {
 
   const handleChangePage = (event: unknown, newPage: any) => {
-    fetchCard({ cardsPack_id, page: newPage + 1, pageCount });
-  };
-
+    setPage(newPage + 1)
+  }
   const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
-    fetchCard({ cardsPack_id, page, pageCount: +event.target.value });
-  };
+    setPageCount(+event.target.value)
+  }
 
   return (
     <div className={s.table}>
@@ -41,14 +39,14 @@ export function TableCardList({ cardsPack_id }: FetchCardRequestType) {
             </TableRow>
           </TableHead>
           <TableBody>
-            {cards.map((card) => (
+            {cards.cards.map((card: any) => (
               <StyledTableRow key={card._id}>
                 <StyledTableCell align="left">{card.question}</StyledTableCell>
                 <StyledTableCell align="left">{card.answer}</StyledTableCell>
                 <StyledTableCell align="left">{card.updated}</StyledTableCell>
                 <StyledTableCell align="left">{card.grade}</StyledTableCell>
                 <StyledTableCell align="left">
-                  <CardIcons user_id={card.user_id} id={card._id}/>
+                  <CardIcons user_id={card.user_id} id={card._id} />
                 </StyledTableCell>
               </StyledTableRow>
             ))}
@@ -57,13 +55,13 @@ export function TableCardList({ cardsPack_id }: FetchCardRequestType) {
         <TablePagination
           rowsPerPageOptions={[1, 2, 4, 6, 8, 10, 12, 14]}
           component="div"
-          count={cardsTotalCount}
-          rowsPerPage={pageCount}
-          page={page - 1}
+          count={cards.cardsTotalCount}
+          rowsPerPage={cards.pageCount}
+          page={cards.page - 1}
           onPageChange={handleChangePage}
           onRowsPerPageChange={handleChangeRowsPerPage}
         />
       </TableContainer>
     </div>
-  );
+  )
 }

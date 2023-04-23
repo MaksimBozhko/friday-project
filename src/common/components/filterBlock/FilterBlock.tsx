@@ -1,75 +1,63 @@
-import React, { ChangeEvent, FC, useEffect, useState } from "react";
-import s from "./filterBlock.module.scss";
-import SuperInputText from "common/components/superComponents/superInputText/SuperInputText";
-import { ToggleBtn } from "common/utils/ToggleBtn";
-import SuperRange from "common/components/superComponents/superRange/SuperRange";
-import { ReactComponent as ResetFilter } from "common/assets/img/resetFilter.svg";
-import { useActions } from "common/hooks";
-import { packThunks } from "features/packsList/packsSlice";
-import { useSearchParams } from "react-router-dom";
-import { debounce } from "lodash";
-import { getSearchParams } from "common/utils/getSearchParams";
+import React, { ChangeEvent, FC, useState } from "react"
+import s from "./filterBlock.module.scss"
+import SuperInputText from "common/components/superComponents/superInputText/SuperInputText"
+import { ToggleBtn } from "common/utils/ToggleBtn"
+import SuperRange from "common/components/superComponents/superRange/SuperRange"
+import { ReactComponent as ResetFilter } from "common/assets/img/resetFilter.svg"
+import { useSearchParams } from "react-router-dom"
+import { getSearchParams } from "common/utils/getSearchParams"
 
 export const FilterBlock: FC = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const search = getSearchParams(searchParams);
-  const { fetchPack } = useActions(packThunks);
+  const [searchParams, setSearchParams] = useSearchParams()
+  const search = getSearchParams(searchParams)
 
-  const [value, setValue] = useState(search.packName);
-  const [showAllOrMyPacks, setShowAllOrMyPacks] = useState(search.user_id || "all");
-  const [valueRange1, setValueRange1] = useState(search.min || 0);
-  const [valueRange2, setValueRange2] = useState(search.max || 100);
-
-  useEffect(() => {
-    const delayedFetchPack = debounce(fetchPack, 500); // 500ms debounce delay
-    delayedFetchPack(search);
-    return () => {
-      delayedFetchPack.cancel();
-    };
-  }, [search]);
+  const [value, setValue] = useState(search.packName)
+  const [showAllOrMyPacks, setShowAllOrMyPacks] = useState(search.user_id || "all")
+  const [valueRange1, setValueRange1] = useState(search.min || 0)
+  const [valueRange2, setValueRange2] = useState(search.max || 100)
 
   const onChangeInputHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    setValue(e.currentTarget.value);
+    setValue(e.currentTarget.value)
     if (e.currentTarget.value) {
-      setSearchParams({ ...search, packName: e.currentTarget.value });
+      setSearchParams({ ...search, packName: e.currentTarget.value })
     } else {
-      setSearchParams({});
+      setSearchParams({})
     }
-  };
+  }
 
   const toggleBtnChange = (event: React.MouseEvent<HTMLElement>, packsShow: string) => {
-    setShowAllOrMyPacks(packsShow);
+    setShowAllOrMyPacks(packsShow)
     if (packsShow) {
-      setSearchParams({ ...search, user_id: packsShow });
+      setSearchParams({ ...search, user_id: packsShow })
     } else {
-      setSearchParams({});
+      setSearchParams({})
     }
-  };
+  }
 
   const rangeChangeHandler = (event: any, value: any) => {
-    let params = {};
+    let params = {}
     if (Array.isArray(value)) {
       if (event.target.value[0] !== 0 || event.target.value[1] !== 100) {
-        params = { ...search, min: event.target.value[0], max: event.target.value[1] };
+        params = { ...search, min: event.target.value[0], max: event.target.value[1] }
       } else {
-        params = { ...search };
+        params = { ...search }
       }
-      setValueRange1(+event.target.value[0]);
-      setValueRange2(+event.target.value[1]);
+      setValueRange1(+event.target.value[0])
+      setValueRange2(+event.target.value[1])
     } else {
-      params = { ...search, min: event.target.value };
-      setValueRange1(+event.target.value);
+      params = { ...search, min: event.target.value }
+      setValueRange1(+event.target.value)
     }
-    setSearchParams(params);
-  };
+    setSearchParams(params)
+  }
 
   const resetFilterHandler = () => {
-    setSearchParams({});
-    setValue("");
-    setShowAllOrMyPacks("all");
-    setValueRange1(0);
-    setValueRange2(100);
-  };
+    setSearchParams({})
+    setValue("")
+    setShowAllOrMyPacks("all")
+    setValueRange1(0)
+    setValueRange2(100)
+  }
 
   return (
     <div className={s.filterBlock}>
@@ -94,5 +82,5 @@ export const FilterBlock: FC = () => {
         <ResetFilter onClick={resetFilterHandler} />
       </div>
     </div>
-  );
-};
+  )
+}

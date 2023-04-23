@@ -13,7 +13,7 @@ import { useActions } from "common/hooks";
 import { authThunks } from "common/components/authorization/login/authSlice";
 import { useSelector } from "react-redux";
 import { Circular } from "common/components/Circular";
-import { Cards } from "features/pack/Cards";
+import { Cards } from "features/pack";
 import { appSelectors } from "app";
 import { Login } from "common/components/authorization/login/Login";
 

@@ -21,6 +21,7 @@ export type ResponseCardsType = {
 	page: number
 	pageCount: number
 	packUserId: string
+	packName: string
 }
 export type CardType = {
 	answer: string
@@ -32,7 +33,42 @@ export type CardType = {
 	created: string
 	updated: string
 	_id: string
+	more_id: string
+	rating: number
 }
+export type FetchCardRequestType = {
+	cardsPack_id: string
+	cardAnswer?: string
+	cardQuestion?: string
+	min?: number
+	max?: number
+	page?: number
+	pageCount?: number
+	sortCards?: any
+}
+export type CreateCardRequestType = Partial<{
+	cardsPack_id: string
+	question: string
+	answer: string
+	grade?: number
+	shots?: number
+	answerImg?: string
+	questionImg?: string
+	questionVideo?: string
+	answerVideo?:string
+}>
+export type UpdateCardRequestType = Partial<{
+	_id: string
+	question: string
+	answer: string
+	grade?: number
+	shots?: number
+	answerImg?: string
+	questionImg?: string
+	questionVideo?: string
+	answerVideo?:string
+}>
+
 
 //pack types
 export type ResponsePackType = {
@@ -73,41 +109,4 @@ export type CreatePackRequestType = Partial<{
 export type UpdatePackRequestType = Partial<{
 	_id: string
 	name: string
-}>
-
-//card types
-
-export type FetchCardRequestType = {
-	cardsPack_id: string
-	cardAnswer?: string
-	cardQuestion?: string
-	min?: number
-	max?: number
-	page?: number
-	pageCount?: number
-	sortCards?: any
-}
-
-export type CreateCardRequestType = Partial<{
-	cardsPack_id: string
-	question: string
-	answer: string
-	grade?: number
-	shots?: number
-	answerImg?: string
-	questionImg?: string
-	questionVideo?: string
-	answerVideo?:string
-}>
-
-export type UpdateCardRequestType = Partial<{
-	_id: string
-	question: string
-	answer: string
-	grade?: number
-	shots?: number
-	answerImg?: string
-	questionImg?: string
-	questionVideo?: string
-	answerVideo?:string
 }>

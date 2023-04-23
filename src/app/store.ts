@@ -3,19 +3,20 @@ import { ThunkDispatch } from "redux-thunk";
 import { configureStore } from "@reduxjs/toolkit";
 import { authReducer } from "common/components/authorization/login/authSlice";
 import { appReducer } from "app/appSlice";
-import { packReducer } from "features/packsList/packsSlice";
-import { cardReducer } from "features/pack/cardsSlice";
+import { cardsAPI } from "features/pack/CreateAPI"
+import { packsAPI } from "features/packsList/packsAPI"
 
 
 const rootReducer = combineReducers({
 	auth: authReducer,
 	app: appReducer,
-	pack: packReducer,
-	card: cardReducer
+	[cardsAPI.reducerPath]: cardsAPI.reducer,
+	[packsAPI.reducerPath]: packsAPI.reducer,
 })
 
 export const store = configureStore({
 	reducer: rootReducer,
+	middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(cardsAPI.middleware, packsAPI.middleware)
 })
 
 
