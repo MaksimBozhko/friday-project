@@ -23,7 +23,22 @@ export const cardsAPI = createApi({
       }),
       invalidatesTags: ['Card']
     }),
+    updateCard: builder.mutation({
+      query: (cardBody) => ({
+        url: '/cards/card',
+        method: 'PUT',
+        body: {card: cardBody},
+      }),
+      invalidatesTags: ['Card']
+    }),
+    deleteCard: builder.mutation({
+      query: (id) => ({
+        url: `/cards/card?id=${id}`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: ['Card']
+    }),
   }),
 })
 
-export const { useCreateCardMutation, useGetCardsQuery } = cardsAPI
+export const { useCreateCardMutation, useGetCardsQuery, useUpdateCardMutation, useDeleteCardMutation } = cardsAPI
