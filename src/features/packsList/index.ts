@@ -1,1 +1,1 @@
-export * as packSelectors from "./pack.selector"
+export {PacksList} from "./PacksList"

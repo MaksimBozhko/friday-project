@@ -7,24 +7,29 @@ import TableHead from "@mui/material/TableHead"
 import TableRow from "@mui/material/TableRow"
 import Paper from "@mui/material/Paper"
 import TablePagination from "@mui/material/TablePagination"
-import { useSelector } from "react-redux"
 import { NavLink, useSearchParams } from "react-router-dom"
 import { getSearchParams } from "common/utils/getSearchParams"
 import { StyledTableCell, StyledTableRow } from "./tableStyle"
-import { packSelectors } from "features/packsList"
 import { TableIcons } from "common/components/table/TableIcons"
+import { useGetPacksQuery } from "features/packsList/packsAPI"
+import { useDebounce } from "common/hooks"
 
 export function TablePackList() {
   const [searchParams, setSearchParams] = useSearchParams()
   const search = getSearchParams(searchParams)
-  const { cardPacks, cardPacksTotalCount, page, pageCount } = useSelector(packSelectors.pack)
+
+  const { data, isFetching } = useGetPacksQuery(useDebounce(search))
 
   const handleChangePage = (event: unknown, newPage: any) => {
-    setSearchParams({ ...search, pageCount: pageCount, page: newPage + 1 } as any)
+    setSearchParams({ ...search, pageCount: data?.pageCount, page: newPage + 1 } as any)
   }
-
   const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchParams({ ...search, pageCount: event.target.value, page: "1" })
+  }
+
+  if (isFetching) return <p>loading</p>
+  if (!data) {
+    return <p>No data found</p>
   }
   return (
     <div className={s.table}>
@@ -40,7 +45,7 @@ export function TablePackList() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {cardPacks.map((pack) => (
+            {data.cardPacks.map((pack) => (
               <StyledTableRow key={pack._id}>
                 <StyledTableCell component="th" scope="row">
                   <NavLink to={`cards/${pack._id}`}>{pack.name}</NavLink>
@@ -58,9 +63,9 @@ export function TablePackList() {
         <TablePagination
           rowsPerPageOptions={[1, 2, 4, 6, 8, 10, 12, 14]}
           component="div"
-          count={cardPacksTotalCount}
-          rowsPerPage={pageCount}
-          page={page - 1}
+          count={data.cardPacksTotalCount}
+          rowsPerPage={data.pageCount}
+          page={data.page - 1}
           onPageChange={handleChangePage}
           onRowsPerPageChange={handleChangeRowsPerPage}
         />

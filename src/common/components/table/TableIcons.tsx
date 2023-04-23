@@ -7,14 +7,15 @@ import { useSelector } from "react-redux"
 import { AppRootStateType } from "app/store"
 import { PackModal } from "common/components/modal/packModal/PackModal"
 import { DeleteModal } from "common/components/modal/deleteModal/DeleteModal"
-import { useActions } from "common/hooks"
-import { packThunks } from "features/packsList/packsSlice"
+import { useDeletePackMutation, useUpdatePackMutation } from "features/packsList/packsAPI"
 
-export const TableIcons = ({ user_id, packId, name }: { user_id: string, packId: string, name: string }) => {
+export const TableIcons = ({ user_id, packId: id, name }: { user_id: string, packId: string, name: string }) => {
   const myId = useSelector((state: AppRootStateType) => state.auth.id)
   const [isOpenModalEdit, setIsOpenModalEdit] = useState<boolean>(false)
   const [isOpenModalDelete, setIsOpenModalDelete] = useState<boolean>(false)
-  const { updatePack, deletePack } = useActions(packThunks)
+
+  const [updatePack] = useUpdatePackMutation()
+  const [deletePack] = useDeletePackMutation()
 
   const onClose = () => {
     setIsOpenModalEdit(false)
@@ -31,11 +32,10 @@ export const TableIcons = ({ user_id, packId, name }: { user_id: string, packId:
   }
 
   const updatePackCallback = (arg: any) => {
-    updatePack({_id: packId, name: arg.name})
+    updatePack({ _id: id, name: arg.name })
   }
   const deletePackCallback = () => {
-    console.log(packId)
-    deletePack({ id: packId })
+    deletePack(id)
   }
   return (
     <>

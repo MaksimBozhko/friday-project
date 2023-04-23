@@ -1,1 +1,2 @@
-export * as cardSelectors from "./card.selector"
+
+export { Cards } from "./Cards"

@@ -3,6 +3,7 @@ import s from "./superRange.module.scss"
 import { Slider } from "@mui/material";
 
 const SuperRange: React.FC<any> = (props) => {
+  const {} = props
   const railColorStyle = typeof props.value === "number" && props.value === 0 ? "#8B8B8B" : "#8B8B8B";
   return (
     <div className={s.rangeBlock}>
