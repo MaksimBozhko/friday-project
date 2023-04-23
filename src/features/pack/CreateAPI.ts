@@ -5,6 +5,7 @@ const baseUrl = "https://neko-back.herokuapp.com/2.0/"
 export const cardsAPI = createApi({
   reducerPath: 'cardsAPI',
   baseQuery: fetchBaseQuery({ baseUrl, credentials: 'include' }),
+  tagTypes: ['Card'],
   endpoints: (builder) => ({
     getCards: builder.query({
       query: (options) => ({
@@ -12,6 +13,7 @@ export const cardsAPI = createApi({
         method: 'GET',
         params: options,
       }),
+      providesTags: ['Card']
     }),
     createCard: builder.mutation({
       query: (cardBody) => ({
@@ -19,6 +21,7 @@ export const cardsAPI = createApi({
         method: 'POST',
         body: {card: cardBody},
       }),
+      invalidatesTags: ['Card']
     }),
   }),
 })
