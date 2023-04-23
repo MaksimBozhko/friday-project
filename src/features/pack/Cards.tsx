@@ -17,11 +17,10 @@ export const Cards = () => {
   const [pageCount, setPageCount] = useState(4)
 
   const { data, isFetching } = useGetCardsQuery({ cardsPack_id, page, pageCount })
-  const [createCard, {isLoading}] = useCreateCardMutation()
-  console.log(data)
+  const [createCard] = useCreateCardMutation()
 
   const addPackCallback = (arg: any) => {
-    createCard({cardsPack_id, question: arg.question, answer: arg.answer})
+    createCard({ cardsPack_id, question: arg.question, answer: arg.answer })
   }
   const addCardHandler = () => {
     setIsOpenModalAdd(true)
@@ -33,13 +32,13 @@ export const Cards = () => {
   if (isFetching) return <>Loading...</>
   return (
     <>
-      {data.cards.length
+      {data?.cards.length
         ?
         <div>
           <BtnBack />
           <div className={s.header}>
             <h2 className={s.title}>{data.packName}</h2>
-            <SuperButton className={s.btn} onClick={addCardHandler} >Add new card</SuperButton>
+            <SuperButton className={s.btn} onClick={addCardHandler}>Add new card</SuperButton>
           </div>
           <div className={s.searchBlock}>
             <p className={s.text}>Search</p>
@@ -48,7 +47,7 @@ export const Cards = () => {
           <TableCardList cards={data} setPage={setPage} setPageCount={setPageCount} />
         </div>
         :
-        <EmptyPack title={data.packName} id={data.packUserId} />
+        <EmptyPack title={data?.packName} cardsPack_id={cardsPack_id} />
       }
       {isOpenModalAdd && (
         <CardModal title={"Edit card"}
