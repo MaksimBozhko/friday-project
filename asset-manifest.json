@@ -1,10 +1,22 @@
 {
   "files": {
-    "main.js": "/friday-project/static/js/main.f33c351a.js",
+    "main.css": "/friday-project/static/css/main.bb163f5e.css",
+    "main.js": "/friday-project/static/js/main.94a35fed.js",
+    "static/media/email.svg": "/friday-project/static/media/email.cdfba66fde5a43fa07de20848a33be02.svg",
+    "static/media/logo.svg": "/friday-project/static/media/logo.66aa37dd1366aaf98fa95be1206c3b1e.svg",
+    "static/media/resetFilter.svg": "/friday-project/static/media/resetFilter.80aeda8c186b99afd75db2ba7510c0be.svg",
+    "static/media/Delete.svg": "/friday-project/static/media/Delete.cec5cb1018a4546d8fcab9a9d71493e0.svg",
+    "static/media/Edit.svg": "/friday-project/static/media/Edit.3b0584625ecc167761b6d7de2aff3915.svg",
+    "static/media/uploadBtn.svg": "/friday-project/static/media/uploadBtn.f44d951526acbd5ef97e2bb608a2b2f2.svg",
     "index.html": "/friday-project/index.html",
-    "main.f33c351a.js.map": "/friday-project/static/js/main.f33c351a.js.map"
+    "static/media/teacher.svg": "/friday-project/static/media/teacher.188ef1341a85acef79bb902160ffc4f5.svg",
+    "static/media/close.svg": "/friday-project/static/media/close.47159591103829ef3885caae41e0490f.svg",
+    "static/media/arrowBack.svg": "/friday-project/static/media/arrowBack.ee8d7f3edd0918563afd19a7675b44cd.svg",
+    "main.bb163f5e.css.map": "/friday-project/static/css/main.bb163f5e.css.map",
+    "main.94a35fed.js.map": "/friday-project/static/js/main.94a35fed.js.map"
   },
   "entrypoints": [
-    "static/js/main.f33c351a.js"
+    "static/css/main.bb163f5e.css",
+    "static/js/main.94a35fed.js"
   ]
 }
